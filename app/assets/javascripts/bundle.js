@@ -103,6 +103,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_forms_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/forms/signup_form_container */ "./frontend/components/forms/signup_form_container.jsx");
 /* harmony import */ var _util_route_util_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/route_util.jsx */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _components_navbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/navbar */ "./frontend/components/navbar.jsx");
+/* harmony import */ var _components_splash_splash__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/splash/splash */ "./frontend/components/splash/splash.jsx");
+
 
 
 
@@ -112,13 +114,16 @@ __webpack_require__.r(__webpack_exports__);
  // import SearchIndexContainer from "./components/bench/search_container"
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "OK CUTE PAW!!!!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util_jsx__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util_jsx__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     path: "/login",
-    component: _components_forms_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: (_components_forms_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], _components_navbar__WEBPACK_IMPORTED_MODULE_6__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util_jsx__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     path: "/signup",
-    component: _components_forms_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }));
+    component: (_components_forms_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], _components_navbar__WEBPACK_IMPORTED_MODULE_6__["default"])
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/",
+    component: _components_splash_splash__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -542,6 +547,59 @@ var Navbar = function Navbar() {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/splash.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/splash/splash.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var SplashPage = function SplashPage() {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-content"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-header"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-header-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "okcutepaw")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-header-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Have an account?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+    to: "/login",
+    className: "splash-signin"
+  }, "Sign in"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-top"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-text"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "DOGS DESERVE BETTER"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "greet-text"
+  }, "On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog based on who you are, not what you look like. Because everyone deserves a pupper")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-img"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-tos-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "By clickin join you dont agree to our terms and conditions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-signup-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+    to: '/signup',
+    className: "splash-signup"
+  }, "Join OkCutePaw")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-footer"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SplashPage);
+
+/***/ }),
+
 /***/ "./frontend/okaycutepaw.jsx":
 /*!**********************************!*\
   !*** ./frontend/okaycutepaw.jsx ***!
@@ -813,11 +871,11 @@ var Root = function Root(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
 
 
 
@@ -825,7 +883,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_2__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_2__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_0___default.a));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
