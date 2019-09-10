@@ -1,28 +1,20 @@
 import React from "react";
-import GreetingContainer from './components/greeting/greeting_container';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormContainer from './components/forms/login_form_container';
 import SignupFormContainer from './components/forms/signup_form_container';
-import { AuthRoute } from "./util/route_util.jsx";
-import Navbar from "./components/navbar";
+import { AuthRoute, ProtectedRoute } from "./util/route_util.jsx";
 import SplashPage from "./components/splash/splash";
-// import SearchIndexContainer from "./components/bench/search_container"
+import UsersIndex from './components/userIndex/userIndex';
 const App = () => (
   <div>
     <Switch>
 
-      <AuthRoute path="/login" component={LoginFormContainer, Navbar} />
-      <AuthRoute path="/signup" component={SignupFormContainer, Navbar} />
-      <Route path='/' component={SplashPage} />
+      <AuthRoute path="/login" component={LoginFormContainer} />
+      <AuthRoute path="/signup" component={SignupFormContainer} />
+      <ProtectedRoute path='/users' component={UsersIndex} />
+      <AuthRoute path='/' component={SplashPage} />
+      
     </Switch>
-
-
-
-    {/* <header>
-      <Navbar />
-      <GreetingContainer />
-      <h1>OK CUTE PAW!!!!</h1>
-    </header> */}
 
     {/* <Route exact path="/" component={SearchIndexContainer} /> */}
   </div>

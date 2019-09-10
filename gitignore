@@ -10,5 +10,6 @@
 
 .byebug_history
 
+app/assets/javascripts/bundle.js
 bundle.js
 bundle.js.map
