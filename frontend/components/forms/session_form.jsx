@@ -15,6 +15,7 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleDemoLogin = this.handleDemoLogin.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   };
 
   handleSubmit(e){
@@ -50,8 +51,16 @@ class SessionForm extends React.Component {
         let user = this.state;
         this.props.login(user)
       }, 1500)
-
     }
+  }
+
+  renderErrors() {
+    if (this.props.errors.length > 0){
+      console.log(this.props.errors)
+      let idx = this.props.errors.length - 1
+      let error = this.props.errors[idx]
+      return <li key={idx}>{error}</li>
+    } 
   }
 
   render() {
@@ -73,6 +82,9 @@ class SessionForm extends React.Component {
 
     return (
       <div className="auth-container">
+        <div className="auth-errors">
+          {this.renderErrors()}
+        </div>
         <div className='login-header'>
           <div className='login-logo'>OkCutePaw</div>
         </div>
