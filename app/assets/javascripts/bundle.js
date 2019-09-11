@@ -327,28 +327,37 @@ function (_React$Component) {
       this.props.resetErrors();
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.sTimer2, this.sTimer1);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var user = this.state;
-      this.props.action(user);
+      this.props.action(user).then(function () {}, function () {
+        return _this2.renderErrors();
+      });
     }
   }, {
     key: "update",
     value: function update(form) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, form, e.target.value));
+        return _this3.setState(_defineProperty({}, form, e.target.value));
       };
     }
   }, {
     key: "handleDemoLogin",
     value: function handleDemoLogin() {
-      var _this3 = this;
+      var _this4 = this;
 
       var demonlogin = function demonlogin() {
-        _this3.setState({
+        _this4.setState({
           username: '',
           password: ''
         });
@@ -358,9 +367,9 @@ function (_React$Component) {
 
         var _loop = function _loop(i) {
           setTimeout(function () {
-            _this3.setState({
-              username: _this3.state.username + un[i],
-              password: _this3.state.password + pass[i]
+            _this4.setState({
+              username: _this4.state.username + un[i],
+              password: _this4.state.password + pass[i]
             });
           }, 1000);
         };
@@ -370,9 +379,9 @@ function (_React$Component) {
         }
 
         setTimeout(function () {
-          var user = _this3.state;
+          var user = _this4.state;
 
-          _this3.props.action(user);
+          _this4.props.action(user);
         }, 1500);
       };
 
@@ -389,21 +398,17 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
+      var _this5 = this;
+
       if (this.props.errors.length > 0) {
-        setTimeout(function () {
+        this.sTimer1 = setTimeout(function () {
           document.querySelector('.error-container').classList.add('error-slide');
         }, 1);
-        setTimeout(function () {
+        this.sTimer2 = setTimeout(function () {
           document.querySelector('.error-container').classList.remove('error-slide');
+
+          _this5.props.resetErrors();
         }, 2000);
-        var idx = this.props.errors.length - 1;
-        var error = this.props.errors[idx];
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "error-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "session-error",
-          key: idx
-        }, error));
       }
     }
   }, {
@@ -427,13 +432,20 @@ function (_React$Component) {
         placeholder: "Location",
         value: this.state.location
       })) : '';
+      var idx = this.props.errors.length - 1;
+      var error = this.props.errors[idx];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "auth-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-logo"
-      }, "okcutepaw"), this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "okcutepaw"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-error",
+        key: idx
+      }, error))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "return-link"

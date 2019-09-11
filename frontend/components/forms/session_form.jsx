@@ -22,10 +22,15 @@ class SessionForm extends React.Component {
     this.props.resetErrors();
   }
 
+  componentWillUnmount(){
+    clearTimeout(this.sTimer2, this.sTimer1)
+  }
+
   handleSubmit(e){
     e.preventDefault();
     let user = this.state;
-    this.props.action(user);
+    this.props.action(user).then(()=>{},() => this.renderErrors());
+    
   }
 
   update(form){
@@ -71,20 +76,13 @@ class SessionForm extends React.Component {
   renderErrors() {
     if (this.props.errors.length > 0){
      
-      setTimeout(() => {
+      this.sTimer1 = setTimeout(() => {
         document.querySelector('.error-container').classList.add('error-slide');
       }, 1)
-      setTimeout(() => {
+      this.sTimer2 =setTimeout(() => {
         document.querySelector('.error-container').classList.remove('error-slide');
+        this.props.resetErrors();
       }, 2000)
-      let idx = this.props.errors.length - 1
-      let error = this.props.errors[idx]
-      return (
-        <div className="error-container" >
-          <span className='session-error' key={idx}>{error}</span>   
-        </div>
-      )
-      
     } 
   }
 
@@ -106,13 +104,17 @@ class SessionForm extends React.Component {
 
       </form>
     ) : '')
+    let idx = this.props.errors.length - 1
+    let error = this.props.errors[idx]
 
     return (
       <div className="auth-container">
         
         <div className='session-header'>
           <div className='session-logo'>okcutepaw</div>
-          {this.renderErrors()}
+          <div className="error-container" >
+            <span className='session-error' key={idx}>{error}</span>
+          </div>
         </div>
         <div className="session-form-header">
           
