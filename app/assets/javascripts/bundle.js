@@ -717,7 +717,7 @@ function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      Object(timers__WEBPACK_IMPORTED_MODULE_2__["clearInterval"])(this.colorInterval);
+      window.clearInterval(this.colorInterval);
     }
   }, {
     key: "render",

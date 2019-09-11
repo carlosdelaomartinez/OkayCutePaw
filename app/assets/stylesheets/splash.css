@@ -87,19 +87,23 @@ height: 20px
 }
 
 .color1 {
-  background-color: #f0a1c1; ;
+  background-color: #f0a1c1; 
+  transition: 0.5s;
 }
 
 .color2 {
   background-color: #24d7f2;
+  transition: 0.5s;
 }
 
 .color3 {
-  background-color: #21c3fd
+  background-color: #21c3fd;
+  transition: 0.5s;
 }
 
 .color4 {
-  background-color: #21bd66
+  background-color: #21bd66;
+  transition: 0.5s;
 }
 
 }

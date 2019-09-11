@@ -16,7 +16,7 @@ class SplashPage extends React.Component {
     }, 4000)
   }
   componentWillUnmount(){
-    clearInterval(this.colorInterval)
+    window.clearInterval(this.colorInterval)
   }
 
   render(){
