@@ -2,22 +2,27 @@ import {Link} from 'react-router-dom'
 import React from 'react';
 import { clearInterval } from 'timers';
 class SplashPage extends React.Component {
-  // componentDidMount(){
-  //   this.colorInterval = setInterval(() => {
-      
-  //     const colors = ['color1', 'color2', 'color3', 'color4']
-  //     document.querySelector('.splash-content').classList()
-  //     const next colo
-  //   }, 5000)
-  // }
-  // componentWillUnmount(){
-  //   clearInterval(this.colorInterval)
-  // }
+  constructor(props){
+    super(props);
+    this.state = { color: 'color1'}
+  }
+  componentDidMount(){
+    this.colorInterval = setInterval(() => {
+      const colorOrder = ['color1', 'color2', 'color3', 'color4']
+      let currentColor = this.state.color;
+      let nextIdx = colorOrder.indexOf(currentColor) + 1
+      let nextColor = colorOrder[nextIdx] !== undefined ? colorOrder[nextIdx] : colorOrder[0];
+      this.setState({color: nextColor})
+    }, 4000)
+  }
+  componentWillUnmount(){
+    clearInterval(this.colorInterval)
+  }
 
   render(){
     return (
       <div className='splash'>
-        <div className="splash-content color1">
+        <div className={`splash-content ${this.state.color}`}>
           <div className='splash-header-container'>
             <div className='splash-header'>
               <div className="splash-header-sub">

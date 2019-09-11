@@ -686,29 +686,46 @@ var SplashPage =
 function (_React$Component) {
   _inherits(SplashPage, _React$Component);
 
-  function SplashPage() {
+  function SplashPage(props) {
+    var _this;
+
     _classCallCheck(this, SplashPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SplashPage).call(this, props));
+    _this.state = {
+      color: 'color1'
+    };
+    return _this;
   }
 
   _createClass(SplashPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.colorInterval = setInterval(function () {
+        var colorOrder = ['color1', 'color2', 'color3', 'color4'];
+        var currentColor = _this2.state.color;
+        var nextIdx = colorOrder.indexOf(currentColor) + 1;
+        var nextColor = colorOrder[nextIdx] !== undefined ? colorOrder[nextIdx] : colorOrder[0];
+
+        _this2.setState({
+          color: nextColor
+        });
+      }, 4000);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      Object(timers__WEBPACK_IMPORTED_MODULE_2__["clearInterval"])(this.colorInterval);
+    }
+  }, {
     key: "render",
-    // componentDidMount(){
-    //   this.colorInterval = setInterval(() => {
-    //     const colors = ['color1', 'color2', 'color3', 'color4']
-    //     document.querySelector('.splash-content').classList()
-    //     const next colo
-    //   }, 5000)
-    // }
-    // componentWillUnmount(){
-    //   clearInterval(this.colorInterval)
-    // }
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "splash-content color1"
+        className: "splash-content ".concat(this.state.color)
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
