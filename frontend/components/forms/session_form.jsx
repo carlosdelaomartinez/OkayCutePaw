@@ -31,10 +31,8 @@ class SessionForm extends React.Component {
   }
 
   handleDemoLogin(){
-    if(this.props.formType != 'login'){
-      this.props.history.push('/login')
-      // this.handleDemoLogin()
-    } else {
+    
+    const demonlogin = () => {
       this.setState({ username: '', password: '' })
       let un = 'thoreo'.split('')
       let pass = '123456'.split('')
@@ -49,9 +47,22 @@ class SessionForm extends React.Component {
       }
       setTimeout(() => {
         let user = this.state;
-        this.props.login(user)
+        this.props.action(user)
       }, 1500)
     }
+    if (this.props.formType !== 'login') {
+      this.props.history.push('/login')
+      // this.handleDemoLogin()
+      setTimeout( () => {
+        document.querySelector('.session-demo-button').click()
+        console.log('hello')
+      }, 50)
+      
+      
+    } else {
+      demonlogin();
+
+      } 
   }
 
   renderErrors() {
@@ -114,7 +125,7 @@ class SessionForm extends React.Component {
             {formToRender}
             <div className="session-buttons-container">
               <button onClick={this.handleSubmit} className="session-type-button"> {this.props.formType === 'login' ? 'Sign in' : 'Sign up'}</button>
-              <div className="session-demo-button"><a href="#" onClick={this.handleDemoLogin}>Sing In With Demo User</a>  </div>
+              <button className="session-demo-button" onClick={this.handleDemoLogin}>Sing In With Demo User</button>  
             </div>
           </div>
           
