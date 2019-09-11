@@ -17,6 +17,10 @@ class SessionForm extends React.Component {
     this.handleDemoLogin = this.handleDemoLogin.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   };
+  componentDidMount(){
+    
+    this.props.resetErrors();
+  }
 
   handleSubmit(e){
     e.preventDefault();
@@ -55,7 +59,6 @@ class SessionForm extends React.Component {
       // this.handleDemoLogin()
       setTimeout( () => {
         document.querySelector('.session-demo-button').click()
-        console.log('hello')
       }, 50)
       
       
@@ -67,10 +70,21 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     if (this.props.errors.length > 0){
-      console.log(this.props.errors)
+     
+      setTimeout(() => {
+        document.querySelector('.error-container').classList.add('error-slide');
+      }, 1)
+      setTimeout(() => {
+        document.querySelector('.error-container').classList.remove('error-slide');
+      }, 2000)
       let idx = this.props.errors.length - 1
       let error = this.props.errors[idx]
-      return <li key={idx}>{error}</li>
+      return (
+        <div className="error-container" >
+          <span className='session-error' key={idx}>{error}</span>   
+        </div>
+      )
+      
     } 
   }
 
@@ -95,11 +109,10 @@ class SessionForm extends React.Component {
 
     return (
       <div className="auth-container">
-        <div className="auth-errors">
-          {this.renderErrors()}
-        </div>
+        
         <div className='session-header'>
           <div className='session-logo'>okcutepaw</div>
+          {this.renderErrors()}
         </div>
         <div className="session-form-header">
           

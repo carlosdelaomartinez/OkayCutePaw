@@ -10,8 +10,12 @@
 
 .splash-content {
   min-height: 768px;
-  width: 100%;
   background-color: #24d7f2;
+  position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
 .splash-header-container{
@@ -26,7 +30,6 @@
   justify-content: space-between;
   height: 97px;
   width: 944px;
-  margin: 0px 65px;
 }
 
 
