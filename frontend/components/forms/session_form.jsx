@@ -23,7 +23,10 @@ class SessionForm extends React.Component {
   }
 
   componentWillUnmount(){
-    clearTimeout(this.sTimer2, this.sTimer1)
+
+    clearTimeout(this.sTimer2);
+    clearTimeout(this.sTimer1);
+
   }
 
   handleSubmit(e){
@@ -75,13 +78,17 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     if (this.props.errors.length > 0){
-     
+      let container = document.querySelector('.error-container');
       this.sTimer1 = setTimeout(() => {
-        document.querySelector('.error-container').classList.add('error-slide');
+        if(container){
+          container.classList.add('error-slide');
+        }       
       }, 1)
-      this.sTimer2 =setTimeout(() => {
-        document.querySelector('.error-container').classList.remove('error-slide');
-        this.props.resetErrors();
+      this.sTimer2 = setTimeout(() => {
+        if (container){
+          container.classList.remove('error-slide');
+          this.props.resetErrors();
+        }
       }, 2000)
     } 
   }
