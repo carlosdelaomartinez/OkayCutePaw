@@ -411,7 +411,9 @@ function (_React$Component) {
         className: "session-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icon-holder"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "\uD83D\uDC15")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "\uD83D\uDC15")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
         type: "text",
@@ -423,13 +425,17 @@ function (_React$Component) {
         onChange: this.update('password'),
         placeholder: "Password",
         value: this.state.password
-      })), formToRender), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), formToRender, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-buttons-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleSubmit
-      }, " ", this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit,
+        className: "session-type-button"
+      }, " ", this.props.formType === 'login' ? 'Sign in' : 'Sign up'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-demo-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
         onClick: this.handleDemoLogin
-      }, "Demo User"))));
+      }, "Sing In With Demo User"), "  ")))));
     }
   }]);
 
@@ -668,7 +674,7 @@ var SplashPage = function SplashPage() {
     className: "splash-img"
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-tos-container"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "By clickin join you dont agree to our terms and conditions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "By clicking join you do not agree to our terms and conditions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-signup-container"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: '/signup',

@@ -103,7 +103,7 @@ class SessionForm extends React.Component {
           <div className="icon-holder">
             <i>🐕</i>
           </div>
-          <div>
+          <div className="session-form-container">
             <form className="session-form">
               <label>Username:</label>
               <input type='text' onChange={this.update('username')} placeholder='Username' value={this.state.name} value={this.state.username} />             
@@ -112,11 +112,12 @@ class SessionForm extends React.Component {
              
             </form>
             {formToRender}
+            <div className="session-buttons-container">
+              <button onClick={this.handleSubmit} className="session-type-button"> {this.props.formType === 'login' ? 'Sign in' : 'Sign up'}</button>
+              <div className="session-demo-button"><a href="#" onClick={this.handleDemoLogin}>Sing In With Demo User</a>  </div>
+            </div>
           </div>
-          <div className="session-buttons-container">
-            <button onClick={this.handleSubmit}> {this.props.formType}</button>
-            <button onClick={this.handleDemoLogin}>Demo User</button>
-          </div>
+          
         </div>
       </div>
       )

@@ -25,7 +25,7 @@ const SplashPage = () => (
         
         <div className='splash-img'></div>
         <div className='splash-tos-container'>
-        <span>By clickin join you dont agree to our terms and conditions</span>
+        <span>By clicking join you do not agree to our terms and conditions</span>
       </div>
       <div className="splash-signup-container">
         <Link to={'/signup'} className="splash-signup">Join OkCutePaw</Link>

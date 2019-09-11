@@ -29,6 +29,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   outline: 0;
+  font-weight: inherit;
   font: inherit;
   color: inherit;
   text-align: inherit;
@@ -36,9 +37,13 @@ time, mark, audio, video {
   vertical-align: inherit;
   box-sizing: inherit;
   background: transparent;
-  font-family: 'IBM Plex Sans', sans-serif
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
+button:focus {outline:0;}
+button {
+  cursor: pointer;
+}
 
 .all{
   position: fixed; 

@@ -17,6 +17,7 @@
 .splash-header-container{
   display:flex;
   justify-content: center;
+
 }
 
 .splash-header {
@@ -87,7 +88,6 @@ height: 20px
 
 /* * {
   border: 1px solid black !important;
-  font-family: 'IBM Plex Sans', sans-serif !important;
 } */
 }
 
