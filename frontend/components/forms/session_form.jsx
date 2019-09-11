@@ -116,13 +116,15 @@ class SessionForm extends React.Component {
 
     return (
       <div className="auth-container">
-        
-        <div className='session-header'>
-          <div className='session-logo'>okcutepaw</div>
-          <div className="error-container" >
-            <span className='session-error' key={idx}>{error}</span>
+        <div className="session-header-container">
+          <div className='session-header'>
+            <span className='session-logo logo'>okcutepaw</span>
+            <div className="error-container" >
+              <span className='session-error' key={idx}>{error}</span>
+            </div>
           </div>
         </div>
+        
         <div className="session-form-header">
           
           <div className="return-link">

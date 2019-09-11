@@ -443,15 +443,17 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "auth-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-header"
+        className: "session-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-logo"
+        className: "session-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-logo logo"
       }, "okcutepaw"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "session-error",
         key: idx
-      }, error))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, error)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "return-link"
@@ -732,9 +734,13 @@ function (_React$Component) {
         className: "splash-header"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash-header-sub"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "okcutepaw")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "main-logo logo"
+      }, "okcutepaw")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash-header-sub"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Have an account?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "splash-header-span"
+      }, "Have an account?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
         to: "/login",
         className: "splash-signin"
       }, "Sign in")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -743,7 +749,7 @@ function (_React$Component) {
         className: "splash-text"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "DOGS DESERVE BETTER"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "greet-text"
-      }, "On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog based on who you are, not what you look like. Because everyone deserves a pupper")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, "They deserve you.On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog who notices you for who you are, not what you look like. Feed them, care for them be their friend, because they'll always be yours.  Because every dog deserves a home. ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash-img"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "splash-tos-container"

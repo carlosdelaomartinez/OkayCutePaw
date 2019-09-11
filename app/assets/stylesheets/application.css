@@ -44,6 +44,9 @@ button:focus {outline:0;}
 button {
   cursor: pointer;
 }
+.logo {
+  font-size: 20px;
+}
 
 .all{
   position: fixed; 

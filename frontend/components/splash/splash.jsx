@@ -26,10 +26,10 @@ class SplashPage extends React.Component {
           <div className='splash-header-container'>
             <div className='splash-header'>
               <div className="splash-header-sub">
-                <span>okcutepaw</span>
+                <span className="main-logo logo">okcutepaw</span>
               </div>
               <div className="splash-header-sub">
-                <span>Have an account?</span>
+                <span className="splash-header-span">Have an account?</span>
                 <Link to={"/login"} className="splash-signin">Sign in</Link>
               </div>
             </div>
@@ -39,7 +39,7 @@ class SplashPage extends React.Component {
           <div className='splash-top'>
             <div className='splash-text'>
               <h3>DOGS DESERVE BETTER</h3>
-              <div className="greet-text">On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog based on who you are, not what you look like. Because everyone deserves a pupper</div>
+              <div className="greet-text">They deserve you.On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog who notices you for who you are, not what you look like. Feed them, care for them be their friend, because they'll always be yours.  Because every dog deserves a home. </div>
 
             </div>
 
