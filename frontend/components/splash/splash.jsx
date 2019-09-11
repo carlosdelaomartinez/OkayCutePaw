@@ -3,15 +3,19 @@ import React from 'react';
 const SplashPage = () => (
   <div className='splash'>
     <div className="splash-content">
-      <div className='splash-header'>
-        <div className="splash-header-container"> 
-          <span>okcutepaw</span>
+      <div className='splash-header-container'>
+        <div className='splash-header'>
+          <div className="splash-header-sub">
+            <span>okcutepaw</span>
+          </div>
+          <div className="splash-header-sub">
+            <span>Have an account?</span>
+            <Link to={"/login"} className="splash-signin">Sign in</Link>
+          </div>
         </div>
-        <div className="splash-header-container">
-          <span>Have an account?</span>
-          <Link to={"/login"} className="splash-signin">Sign in</Link>
-        </div>
+
       </div>
+      
       <div className='splash-top'>
         <div className='splash-text'>
           <h3>DOGS DESERVE BETTER</h3>
@@ -30,7 +34,16 @@ const SplashPage = () => (
       
  
     </div>
-    <div className="splash-footer"></div>
+    <div className="splash-footer">
+      <div className="splash-footer-container">
+        <div className="splash-text">
+          <span>promotional content</span>
+        </div>
+        <div className="personal-links">
+          <span>links go here</span>
+        </div>
+      </div>
+    </div>
   </div>
 )
 

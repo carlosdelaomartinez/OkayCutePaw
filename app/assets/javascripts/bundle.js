@@ -371,49 +371,60 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var formToRender = this.props.formType === 'signup' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      var formToRender = this.props.formType === 'Sign up' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "session-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         onChange: this.update('name'),
+        placeholder: "Name",
         value: this.state.name
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Age", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Age"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         onChange: this.update('age'),
+        placeholder: "Age",
         value: this.state.age
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Location", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         onChange: this.update('location'),
+        placeholder: "Location",
         value: this.state.location
-      }))) : '';
+      })) : '';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "auth-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "auth-errors"
       }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-header"
+        className: "session-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-logo"
-      }, "OkCutePaw")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-container"
+        className: "session-logo"
+      }, "okcutepaw")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "return-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/"
-      }, "<"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "<")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-type-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-type"
-      }, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.formType === 'login' ? 'Sign in' : 'Sign up'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icon-holder"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "icone placeholder")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "\uD83D\uDC15")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "session-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
         type: "text",
         onChange: this.update('username'),
-        value: this.state.username
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: "Username",
+        value: this.state.name
+      }, "value", this.state.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         onChange: this.update('password'),
+        placeholder: "Password",
         value: this.state.password
-      })), formToRender)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-buttons"
+      })), formToRender), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-buttons-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, " ", this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -469,7 +480,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     errors: state.errors.session,
-    formType: 'signup'
+    formType: 'Sign up'
   };
 };
 
@@ -637,15 +648,17 @@ var SplashPage = function SplashPage() {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-content"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-header-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-header"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "splash-header-container"
+    className: "splash-header-sub"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "okcutepaw")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "splash-header-container"
+    className: "splash-header-sub"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Have an account?"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/login",
     className: "splash-signin"
-  }, "Sign in"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "Sign in")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-top"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-text"
@@ -662,7 +675,13 @@ var SplashPage = function SplashPage() {
     className: "splash-signup"
   }, "Join OkCutePaw")))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "splash-footer"
-  }));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-footer-container"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "splash-text"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "promotional content")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "personal-links"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "links go here")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SplashPage);

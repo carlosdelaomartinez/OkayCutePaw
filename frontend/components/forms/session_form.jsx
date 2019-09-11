@@ -64,20 +64,22 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const formToRender = (this.props.formType === 'signup' ? (
-      <div>
+    const formToRender = (this.props.formType === 'Sign up' ? (
+      <form className="session-form">
         <label>
-          Name: 
-          <input type="text" onChange={this.update('name')} value={this.state.name}/>
+          Name:      
         </label>
+        <input type="text" onChange={this.update('name')} placeholder='Name' value={this.state.name} />
         <label>Age
-          <input type="number" onChange={this.update('age')} value={this.state.age}/>
         </label>
+        <input type="number" onChange={this.update('age')} placeholder='Age' value={this.state.age} />
+
         <label>
           Location 
-          <input type="text" onChange={this.update('location')} value={this.state.location}/>
         </label>
-      </div>
+        <input type="text" onChange={this.update('location')} placeholder='Location' value={this.state.location} />
+
+      </form>
     ) : '')
 
     return (
@@ -85,33 +87,33 @@ class SessionForm extends React.Component {
         <div className="auth-errors">
           {this.renderErrors()}
         </div>
-        <div className='login-header'>
-          <div className='login-logo'>OkCutePaw</div>
+        <div className='session-header'>
+          <div className='session-logo'>okcutepaw</div>
         </div>
-        <div className='login-container'>
-          <div className="login-header">
-            <div>
-              <div>
-                <Link to={`/`}>{`<`}</Link>
-              </div>
-            </div>
-            <div className="form-type">{this.props.formType}</div>
+        <div className="session-form-header">
+          
+          <div className="return-link">
+              <Link to={`/`}>{`<`}</Link>
           </div>
+          <div className="form-type-container">
+            <div className="form-type">{this.props.formType === 'login' ? 'Sign in' : 'Sign up'}</div>
+          </div>
+        </div>
+        <div className='session-container'>
           <div className="icon-holder">
-            <i>icone placeholder</i>
+            <i>🐕</i>
           </div>
-          <div className="login-form">
-            <form>
-              <label>Username:
-              <input type='text' onChange={this.update('username')} value={this.state.username} />
-              </label>
-              <label>Password:
-              <input type='password' onChange={this.update('password')} value={this.state.password} />
-              </label>
-              {formToRender}
+          <div>
+            <form className="session-form">
+              <label>Username:</label>
+              <input type='text' onChange={this.update('username')} placeholder='Username' value={this.state.name} value={this.state.username} />             
+              <label>Password:</label>
+              <input type='password' onChange={this.update('password')} placeholder='Password' value={this.state.password} />             
+             
             </form>
+            {formToRender}
           </div>
-          <div className="login-buttons">
+          <div className="session-buttons-container">
             <button onClick={this.handleSubmit}> {this.props.formType}</button>
             <button onClick={this.handleDemoLogin}>Demo User</button>
           </div>
