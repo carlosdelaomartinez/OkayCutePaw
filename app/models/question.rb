@@ -9,6 +9,7 @@
 #
 
 class Question < ApplicationRecord
+  validates :question, presence: true
   has_many :answers,
   foreign_key: :question_id,
   class_name: :QuestionAnswer

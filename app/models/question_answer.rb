@@ -11,6 +11,10 @@
 #
 
 class QuestionAnswer < ApplicationRecord
+  validates :question_id, :user_id, presence: true
+  validates :answer, inclusion: {in: [true, false]}
+
+
   belongs_to :question, 
   foreign_key: :question_id,
   class_name: :Question

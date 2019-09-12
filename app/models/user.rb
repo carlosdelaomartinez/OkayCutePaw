@@ -33,7 +33,8 @@ class User < ApplicationRecord
 
   has_many :answers,
   foreign_key: :user_id,
-  class_name: :QuestionAnswer 
+  class_name: :QuestionAnswer,
+  dependent: :destroy
 
   has_many :questions, 
   through: :answers,
