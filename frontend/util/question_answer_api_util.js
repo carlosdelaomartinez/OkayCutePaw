@@ -13,5 +13,20 @@ export const fetchQuestionAnswer = (userId, questionId) => (
   })
 );
 
+export const createQuestionAnswer = (userId, questionAnswer) => (
+  $.ajax({
+    method: 'POST',
+    url: `api/users/${userId}`,
+    data: questionAnswer
+  })
+);
+
+export const updateQuestionAnswer = (questionAnswer) => (
+  $.ajax({
+    method: 'POST',
+    url: `api/users/${questionAnswer.userId}/question_answers/`,
+    data: questionAnswer
+  })
+);
 
 
