@@ -30,6 +30,14 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
   attr_reader :password
+
+  has_many :answers,
+  foreign_key: :user_id,
+  class_name: :QuestionAnswer 
+
+  has_many :questions, 
+  through: :answers,
+  source: :question
   
   def self.find_by_creds(username, password) 
     user = User.find_by(username: username)
