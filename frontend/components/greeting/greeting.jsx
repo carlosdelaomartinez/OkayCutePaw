@@ -6,7 +6,7 @@ const Greeting = (props) => {
   if(props.loggedIn){
     return (
       <div>
-       <h1>Welcome {props.currentUser()}</h1>
+       <h1>Welcome {props.currentUser}</h1>
         <button onClick={props.logout}>Log Out</button>
       </div>
       )

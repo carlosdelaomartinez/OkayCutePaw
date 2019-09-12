@@ -13,17 +13,19 @@ window.Actionsignup = Action.signup;
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
+
   let preloadedState = undefined;
   if (window.currentUser) {
-    preloadedState = {
+    
+    
+    store = configureStore({
       entities: {
         users: { [window.currentUser.id]: window.currentUser }
       },
       session: {
         id: window.currentUser.id
       }
-    }
-    store = configureStore(preloadedState);
+    });
     delete window.currentUser;
   } else {
     store = configureStore();

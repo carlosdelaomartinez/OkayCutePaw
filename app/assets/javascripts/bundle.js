@@ -561,7 +561,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Greeting = function Greeting(props) {
   if (props.loggedIn) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome ", props.currentUser()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome ", props.currentUser), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: props.logout
     }, "Log Out"));
   } else {
@@ -599,13 +599,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
-    currentUser: function currentUser() {
-      return state.entities.users[state.session.id].name;
-    },
-    logoutCurrentUser: function logoutCurrentUser() {
-      return Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logoutCurrentUser"])();
-    },
+    currentUser: state.entities.users[state.session.id].name,
     loggedIn: Boolean(state.session.id)
   };
 };
@@ -932,15 +928,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var preloadedState = undefined;
 
   if (window.currentUser) {
-    preloadedState = {
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])({
       entities: {
         users: _defineProperty({}, window.currentUser.id, window.currentUser)
       },
       session: {
         id: window.currentUser.id
       }
-    };
-    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
+    });
     delete window.currentUser;
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
@@ -31342,7 +31337,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

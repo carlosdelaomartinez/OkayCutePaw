@@ -35,4 +35,25 @@ ActiveRecord::Base.transaction do
       qa = QuestionAnswer.create!({question_id: question.id, answer: Faker::Boolean.boolean, user_id: user.id})
     end
   end
+
+  demo = User.create!({
+      username: 'thoreo',
+      password: '123456',
+      looking_for: 'dog',
+      distance: 5,
+      age: Faker::Number.number(digits: 2),
+      human: Faker::FunnyName.name,
+      name: 'DemoUser',
+      gender: Faker::Creature::Dog.gender,
+      about_me: Faker::Creature::Dog.meme_phrase,
+      aspirations: Faker::Creature::Dog.sound,
+      talent: Faker::Job.key_skill,
+      traits: Faker::Creature::Dog.breed,
+      needs: Faker::Lorem.sentences(number: 4),
+      hobbies: Faker::Lorem.sentences(number: 4),
+      location: Faker::Address.zip
+    })
+  Question.all.each do |question|
+    qa = QuestionAnswer.create!({question_id: question.id, answer: Faker::Boolean.boolean, user_id: demo.id})
+  end
 end

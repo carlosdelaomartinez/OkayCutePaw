@@ -16,7 +16,6 @@ const App = () => (
       
     </Switch>
 
-    {/* <Route exact path="/" component={SearchIndexContainer} /> */}
   </div>
 );
 
