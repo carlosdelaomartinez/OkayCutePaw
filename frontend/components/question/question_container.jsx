@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
   fetchQuestions: () => dispatch(fetchQuestions()),
   fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
   fetchQuestionAnswer: (userId, questionId) => dispatch(fetchQuestionAnswer(userId, questionId)),
-  fetchQuestionAnswers: () => dispatch(fetchQuestionAnswers()),
+  fetchQuestionAnswers: (userId) => dispatch(fetchQuestionAnswers(userId)),
   createQuestionAnswer: (questionAnswer) => dispatch(createQuestionAnswer(questionAnswer))
 });
 

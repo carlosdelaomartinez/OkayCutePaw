@@ -7,11 +7,12 @@ class Api::QuestionAnswersController < ApplicationController
   end
   # Grab all the question answers
   def index
-    @answers = QuestionAnswer.where(user_id: current_user.id)
+    @answers = QuestionAnswer.where(user_id: params[:user_id])
     render :index
   end
 
   def create
+
     @answer = QuestionAnswer.new(answer_params)
     if @answer.save 
       render :show 

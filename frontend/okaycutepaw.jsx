@@ -8,17 +8,17 @@ import * as QuestionAction from './actions/question_actions';
 import * as QAnswerAction from './actions/question_answers_actions';
 
 
-window.login = login;
-window.logout = logout;
-window.signup = signup;
-window.Actionlogin = Action.login;
-window.Actionsignup = Action.signup;
-window.fetchQuestion = QuestionAction.fetchQuestion;
-window.fetchQuestions = QuestionAction.fetchQuestions;
-window.fetchQA = QAnswerAction.fetchQuestionAnswer;
+// window.login = login;
+// window.logout = logout;
+// window.signup = signup;
+// window.Actionlogin = Action.login;
+// window.Actionsignup = Action.signup;
+// window.fetchQuestion = QuestionAction.fetchQuestion;
+// window.fetchQuestions = QuestionAction.fetchQuestions;
+// window.fetchQA = QAnswerAction.fetchQuestionAnswer;
 window.fetchQAs = QAnswerAction.fetchQuestionAnswers;
-window.createQA = QAnswerAction.createQuestionAnswer;
-
+// window.createQA = QAnswerAction.createQuestionAnswer;
+// window.updateQA = QAnswerAction.updateQuestionAnswer;
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 

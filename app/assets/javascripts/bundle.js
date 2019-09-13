@@ -184,7 +184,7 @@ var fetchQuestion = function fetchQuestion(questionId) {
 /*!******************************************************!*\
   !*** ./frontend/actions/question_answers_actions.js ***!
   \******************************************************/
-/*! exports provided: RECEIVE_QUESTION_ANSWERS, RECEIVE_QUESTION_ANSWER, fetchQuestionAnswer, fetchQuestionAnswers, createQuestionAnswer */
+/*! exports provided: RECEIVE_QUESTION_ANSWERS, RECEIVE_QUESTION_ANSWER, fetchQuestionAnswer, fetchQuestionAnswers, createQuestionAnswer, updateQuestionAnswer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -194,23 +194,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchQuestionAnswer", function() { return fetchQuestionAnswer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchQuestionAnswers", function() { return fetchQuestionAnswers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createQuestionAnswer", function() { return createQuestionAnswer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQuestionAnswer", function() { return updateQuestionAnswer; });
 /* harmony import */ var _util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/question_answer_api_util */ "./frontend/util/question_answer_api_util.js");
 
 var RECEIVE_QUESTION_ANSWERS = 'RECEIVE_QUESTION_ANSWERS';
 var RECEIVE_QUESTION_ANSWER = 'RECEIVE_QUESTION_ANSWER';
 
 var receiveQuestionAnswers = function receiveQuestionAnswers(questionAnswers) {
-  type: RECEIVE_QUESTION_ANSWERS, questionAnswers;
+  return {
+    type: RECEIVE_QUESTION_ANSWERS,
+    questionAnswers: questionAnswers
+  };
 };
 
 var receiveQuestionAnswer = function receiveQuestionAnswer(questionAnswer) {
-  type: RECEIVE_QUESTION_ANSWER, questionAnswer;
+  return {
+    type: RECEIVE_QUESTION_ANSWER,
+    questionAnswer: questionAnswer
+  };
 };
 
 var fetchQuestionAnswer = function fetchQuestionAnswer(userId, questionId) {
-  return dispatch(_util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestionAnswer"](userId, questionId).then(function (questionAnswer) {
-    return dispatch(receiveQuestionAnswer(questionAnswer));
-  }));
+  return function (dispatch) {
+    _util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchQuestionAnswer"](userId, questionId).then(function (questionAnswer) {
+      return dispatch(receiveQuestionAnswer(questionAnswer));
+    });
+  };
 };
 var fetchQuestionAnswers = function fetchQuestionAnswers(userId) {
   return function (dispatch) {
@@ -221,10 +230,19 @@ var fetchQuestionAnswers = function fetchQuestionAnswers(userId) {
     });
   };
 };
-var createQuestionAnswer = function createQuestionAnswer(userId, questionAnswer) {
-  return dispatch(_util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__["updateQuestionAnswer"](userId, questionAnswer).then(function (questionAnswer) {
-    return dispatch(receiveQuestionAnswer(questionAnswer));
-  }));
+var createQuestionAnswer = function createQuestionAnswer(questionAnswer) {
+  return function (dispatch) {
+    return _util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__["createQuestionAnswer"](questionAnswer).then(function (questionAnswer) {
+      return dispatch(receiveQuestionAnswer(questionAnswer));
+    });
+  };
+};
+var updateQuestionAnswer = function updateQuestionAnswer(questionAnswer) {
+  return function (dispatch) {
+    return _util_question_answer_api_util__WEBPACK_IMPORTED_MODULE_0__["updateQuestionAnswer"](questionAnswer).then(function (questionAnswer) {
+      return dispatch(receiveQuestionAnswer(questionAnswer));
+    });
+  };
 };
 
 /***/ }),
@@ -786,35 +804,51 @@ function (_React$Component) {
       questions: []
     };
     return _this;
-  } // componentDidMount(){
-  //   this.props.fetchQuestions();
-  //   this.props.fetchQuestionAnswers();
-  //   const { userId, questions, questionAnswers } = this.props;
-  //   let questionsAnswersArray = Object.keys(questionsAnswers).map(key => {
-  //     return questionAnswers[key]
-  //   });
-  //   let answerdQuestionIds = {}
-  //   questionsAnswersArray.forEach( questionAnswer => {
-  //     answerdQuestionIds[questionAnswer.id] = questionAnswer.questionId;
-  //   });
-  //   this.unansweredQuestions = [];
-  //   for (let key in questions){
-  //     if (answerdQuestionIds[key] === 'undefined'){
-  //       this.unansweredQuestions.push(question[key]);
-  //     }
-  //   }
-  // }
-  // handlesubmit(form){
-  //   return (e) => {
-  //     e.preventDefault();
-  //     let qA = {userId, }
-  //   }
-  // }
-
+  }
 
   _createClass(QuestionCard, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchQuestions();
+      this.props.fetchQuestionAnswers(this.props.userId);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) {
+        console.log('loaded answers');
+      }
+
+      if (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length) {
+        this.setState({
+          questions: this.props.questions
+        });
+      }
+    } // let answerdQuestionIds = {}
+    // questionsAnswersArray.forEach( questionAnswer => {
+    //   answerdQuestionIds[questionAnswer.id] = questionAnswer.questionId;
+    // });
+    // this.unansweredQuestions = [];
+    // for (let key in questions){
+    //   if (answerdQuestionIds[key] === 'undefined'){
+    //     this.unansweredQuestions.push(question[key]);
+    //   }
+    // }
+
+  }, {
+    key: "handlesubmit",
+    value: function handlesubmit(form) {
+      return function (e) {
+        e.preventDefault();
+        var qA = {
+          userId: userId
+        };
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-card"
       });
@@ -865,8 +899,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchQuestionAnswer: function fetchQuestionAnswer(userId, questionId) {
       return dispatch(Object(_actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestionAnswer"])(userId, questionId));
     },
-    fetchQuestionAnswers: function fetchQuestionAnswers() {
-      return dispatch(Object(_actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestionAnswers"])());
+    fetchQuestionAnswers: function fetchQuestionAnswers(userId) {
+      return dispatch(Object(_actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_2__["fetchQuestionAnswers"])(userId));
     },
     createQuestionAnswer: function createQuestionAnswer(questionAnswer) {
       return dispatch(Object(_actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_2__["createQuestionAnswer"])(questionAnswer));
@@ -1158,17 +1192,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // window.login = login;
+// window.logout = logout;
+// window.signup = signup;
+// window.Actionlogin = Action.login;
+// window.Actionsignup = Action.signup;
+// window.fetchQuestion = QuestionAction.fetchQuestion;
+// window.fetchQuestions = QuestionAction.fetchQuestions;
+// window.fetchQA = QAnswerAction.fetchQuestionAnswer;
 
-window.login = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__["login"];
-window.logout = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__["logout"];
-window.signup = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__["signup"];
-window.Actionlogin = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
-window.Actionsignup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
-window.fetchQuestion = _actions_question_actions__WEBPACK_IMPORTED_MODULE_6__["fetchQuestion"];
-window.fetchQuestions = _actions_question_actions__WEBPACK_IMPORTED_MODULE_6__["fetchQuestions"];
-window.fetchQA = _actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_7__["fetchQuestionAnswer"];
-window.fetchQAs = _actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_7__["fetchQuestionAnswers"];
-window.createQA = _actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_7__["createQuestionAnswer"];
+window.fetchQAs = _actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_7__["fetchQuestionAnswers"]; // window.createQA = QAnswerAction.createQuestionAnswer;
+// window.updateQA = QAnswerAction.updateQuestionAnswer;
+
 document.addEventListener("DOMContentLoaded", function () {
   var store;
   var preloadedState = undefined;
@@ -1269,7 +1304,7 @@ var QuestionAnswersReducer = function QuestionAnswersReducer() {
       return Object.assign({}, state, _defineProperty({}, action.questionAnswer.id, action.questionAnswer));
 
     case _actions_question_answers_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_QUESTION_ANSWERS"]:
-      return Object.assign({}, state, action.questions);
+      return Object.assign({}, state, action.questionAnswers);
 
     default:
       return state;
@@ -1543,18 +1578,22 @@ var fetchQuestionAnswer = function fetchQuestionAnswer(userId, questionId) {
     url: "api/users/".concat(userId, "/question_answers/").concat(questionId)
   });
 };
-var createQuestionAnswer = function createQuestionAnswer(userId, questionAnswer) {
+var createQuestionAnswer = function createQuestionAnswer(questionAnswer) {
   return $.ajax({
     method: 'POST',
-    url: "api/users/".concat(userId),
-    data: questionAnswer
+    url: "api/users/".concat(questionAnswer.user_id, "/question_answers"),
+    data: {
+      question_answer: questionAnswer
+    }
   });
 };
 var updateQuestionAnswer = function updateQuestionAnswer(questionAnswer) {
   return $.ajax({
-    method: 'POST',
-    url: "api/users/".concat(questionAnswer.userId, "/question_answers/"),
-    data: questionAnswer
+    method: 'PATCH',
+    url: "api/users/".concat(questionAnswer.user_id, "/question_answers/").concat(questionAnswer.question_id),
+    data: {
+      question_answer: questionAnswer
+    }
   });
 };
 

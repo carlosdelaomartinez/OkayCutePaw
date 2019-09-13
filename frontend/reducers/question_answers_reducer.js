@@ -6,7 +6,7 @@ const QuestionAnswersReducer = (state = {}, action) => {
     case RECEIVE_QUESTION_ANSWER:
       return Object.assign({}, state, {[action.questionAnswer.id]: action.questionAnswer});
     case RECEIVE_QUESTION_ANSWERS:
-      return Object.assign({}, state, action.questions)
+      return Object.assign({}, state, action.questionAnswers)
     default: 
     return state;
   }

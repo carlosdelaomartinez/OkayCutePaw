@@ -13,19 +13,19 @@ export const fetchQuestionAnswer = (userId, questionId) => (
   })
 );
 
-export const createQuestionAnswer = (userId, questionAnswer) => (
+export const createQuestionAnswer = (questionAnswer) => (
   $.ajax({
     method: 'POST',
-    url: `api/users/${userId}`,
-    data: questionAnswer
+    url: `api/users/${questionAnswer.user_id}/question_answers`,
+    data:  {question_answer: questionAnswer}
   })
 );
 
 export const updateQuestionAnswer = (questionAnswer) => (
   $.ajax({
-    method: 'POST',
-    url: `api/users/${questionAnswer.userId}/question_answers/`,
-    data: questionAnswer
+    method: 'PATCH',
+    url: `api/users/${questionAnswer.user_id}/question_answers/${questionAnswer.question_id}`,
+    data: {question_answer: questionAnswer}
   })
 );
 
