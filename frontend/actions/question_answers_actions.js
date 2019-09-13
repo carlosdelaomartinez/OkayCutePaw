@@ -20,7 +20,7 @@ export const fetchQuestionAnswer = (userId, questionId) => dispatch (
 
 export const fetchQuestionAnswers = (userId) => dispatch => (
   QuestionAnswersAPIutil.fetchQuestionAnswers(userId)
-    .then(questionAnswers => dispatch(receiveQuestionAnswers(questionAnswers)))
+    .then(questionAnswers => dispatch(receiveQuestionAnswers(questionAnswers)), ()=>console.log(failes))
 );
 
 export const createQuestionAnswer = (userId, questionAnswer) => dispatch (

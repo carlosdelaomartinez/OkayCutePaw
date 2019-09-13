@@ -4,12 +4,20 @@ import configureStore from './store/store'
 import Root from './root'
 import * as Action from './actions/session_actions'
 import { login, logout, signup } from './util/session_api_util';
+import * as QuestionAction from './actions/question_actions';
+import * as QAnswerAction from './actions/question_answers_actions';
+
 
 window.login = login;
 window.logout = logout;
 window.signup = signup;
 window.Actionlogin = Action.login;
 window.Actionsignup = Action.signup;
+window.fetchQuestion = QuestionAction.fetchQuestion;
+window.fetchQuestions = QuestionAction.fetchQuestions;
+window.fetchQA = QAnswerAction.fetchQuestionAnswer;
+window.fetchQAs = QAnswerAction.fetchQuestionAnswers;
+window.createQA = QAnswerAction.createQuestionAnswer;
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
