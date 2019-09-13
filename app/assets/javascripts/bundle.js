@@ -805,7 +805,10 @@ function (_React$Component) {
         question: ''
       }
     };
-    _this.questionsToAsk = _this.questionsToAsk.bind(_assertThisInitialized(_this));
+    _this.questionsToAsk = _this.questionsToAsk.bind(_assertThisInitialized(_this)); // this.filteredQAs;
+
+    _this.handleSkip = _this.handleSkip.bind(_assertThisInitialized(_this));
+    _this.handlesubmit = _this.handlesubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -814,12 +817,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // this.props.fetchQuestions()
-      //   .then(() => this.props.fetchQuestionAnswers(this.props.userId))
-      //   .then(() => { 
-      //     this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-      //     this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
-      //   })
       Promise.all([this.props.fetchQuestions(), this.props.fetchQuestionAnswers(this.props.userId)]).then(function () {
         _this2.filteredQAs = _this2.questionsToAsk(_this2.props.questions, _this2.props.questionAnswers);
 
@@ -829,21 +826,7 @@ function (_React$Component) {
           return console.log(_this2.state);
         });
       });
-    } // componentDidUpdate(prevProps){
-    //   if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
-    //     // if questions or answers happen  to be fetched again this will run
-    //     if(this.state.question.question.length === 0){
-    //       debugger
-    //       this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-    //       this.setState({ question: this.filteredQAs.shift() });
-    //       console.log(this.state);
-    //     }
-    //   }
-    // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
-    //   this.setState({ questions: this.props.questions });
-    // } 
-    // }
-
+    }
   }, {
     key: "questionsToAsk",
     value: function questionsToAsk(questions, questionAnswers) {
@@ -864,20 +847,45 @@ function (_React$Component) {
   }, {
     key: "handlesubmit",
     value: function handlesubmit(form) {
+      var _this3 = this;
+
       return function (e) {
         e.preventDefault();
         var qA = {
-          userId: userId
+          question_id: _this3.state.question.id,
+          user_id: _this3.props.userId,
+          answer: form === 'Yes' ? true : false
         };
+
+        _this3.props.createQuestionAnswer(qA);
+
+        _this3.setState({
+          question: _this3.filteredQAs.shift()
+        });
       };
+    }
+  }, {
+    key: "handleSkip",
+    value: function handleSkip(e) {
+      this.filteredQAs.push(this.state.question);
+      this.setState({
+        question: this.filteredQAs.shift()
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-card"
-      }, this.state.question.question);
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Improve Your Matches"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.question.question), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSkip
+      }, "Skip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "q-btn-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        onClick: this.handlesubmit('No')
+      }, "No"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        onClick: this.handlesubmit('Yes')
+      }, "Yes")))));
     }
   }]);
 

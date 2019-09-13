@@ -5,17 +5,12 @@ class QuestionCard extends React.Component {
     super(props)
     this.state = {question: {question: ''}};
     this.questionsToAsk = this.questionsToAsk.bind(this);
+    // this.filteredQAs;
+    this.handleSkip = this.handleSkip.bind(this);
+    this.handlesubmit = this.handlesubmit.bind(this);
   }
 
   componentDidMount(){
-    // this.props.fetchQuestions()
-    //   .then(() => this.props.fetchQuestionAnswers(this.props.userId))
-    //   .then(() => { 
-    //     this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-    //     this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
-        
-    //   })
-
     Promise.all([
       this.props.fetchQuestions(),
       this.props.fetchQuestionAnswers(this.props.userId)
@@ -24,23 +19,6 @@ class QuestionCard extends React.Component {
       this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
     })
   }
-  // componentDidUpdate(prevProps){
-
-  //   if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
-  //     // if questions or answers happen  to be fetched again this will run
-  //     if(this.state.question.question.length === 0){
-  //       debugger
-  //       this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-  //       this.setState({ question: this.filteredQAs.shift() });
-  //       console.log(this.state);
-  //     }
-      
-  //   }
-    // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
-    //   this.setState({ questions: this.props.questions });
-      
-    // } 
-  // }
 
   questionsToAsk(questions, questionAnswers){
     let questionsToAsk = Object.assign({}, questions);
@@ -57,15 +35,39 @@ class QuestionCard extends React.Component {
   handlesubmit(form){
     return (e) => {
       e.preventDefault();
-      let qA = {userId, }
+      let qA = {
+        question_id: this.state.question.id,
+        user_id: this.props.userId,
+        answer: form === 'Yes' ? true : false
+      }
+      this.props.createQuestionAnswer(qA);
+      this.setState({ question: this.filteredQAs.shift() })
     }
+  }
+  
+  handleSkip(e){
+    this.filteredQAs.push(this.state.question);
+    this.setState({question: this.filteredQAs.shift()})
   }
 
   render(){
-    // debugger
     return (
       <div className="question-card">
-        {this.state.question.question}
+        <form>
+          <label>
+            Improve Your Matches
+          </label>
+          <div>
+            <span>
+              {this.state.question.question}
+            </span>
+              <div onClick={this.handleSkip}>Skip</div>
+              <div className="q-btn-container">
+                <span onClick={this.handlesubmit('No')}>No</span>
+                <span onClick={this.handlesubmit('Yes')}>Yes</span>
+              </div>
+          </div>         
+        </form>
       </div>
     )
   }
