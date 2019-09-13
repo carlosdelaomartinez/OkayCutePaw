@@ -3,7 +3,8 @@ import React from 'react';
 class QuestionCard extends React.Component {
   constructor (props){
     super(props)
-    this.state = {questions: []};
+    this.state = {question: []};
+    this.questionsToAsk = this.questionsToAsk.bind(this);
   }
 
   componentDidMount(){
@@ -12,24 +13,34 @@ class QuestionCard extends React.Component {
     
   }
   componentDidUpdate(prevProps){
-    if(Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length ){
-      console.log('loaded answers');
+
+    if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
+      // if questions or answers happen  to be fetched again this will run
+      if(this.state.question.question !== 0){
+  
+        this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+        this.setState({ question: this.filteredQAs.shift() });
+        console.log(this.state);
+      }
+      
     }
-    if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
-      this.setState({ questions: this.props.questions });
-    }
-    
+    // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
+    //   this.setState({ questions: this.props.questions });
+      
+    // } 
   }
-    // let answerdQuestionIds = {}
-    // questionsAnswersArray.forEach( questionAnswer => {
-    //   answerdQuestionIds[questionAnswer.id] = questionAnswer.questionId;
-    // });
-    // this.unansweredQuestions = [];
-    // for (let key in questions){
-    //   if (answerdQuestionIds[key] === 'undefined'){
-    //     this.unansweredQuestions.push(question[key]);
-    //   }
-    // }
+
+  questionsToAsk(questions, questionAnswers){
+    let questionsToAsk = Object.assign({}, questions);
+    for (let key in questionAnswers) {
+      let qId = questionAnswers[key].questionId
+      if (questionsToAsk[qId] !== 'undefined'){
+        delete questionsToAsk[qId]
+      }
+    }
+    return Object.keys(questionsToAsk).map(key => questionsToAsk[key]);
+  }
+   
   
   handlesubmit(form){
     return (e) => {
@@ -39,10 +50,9 @@ class QuestionCard extends React.Component {
   }
 
   render(){
-    console.log(this.state)
     return (
       <div className="question-card">
-        {/* <span>{this.unansweredQuestions[this.unansweredQuestions.length - 1].question}</span> */}
+        {this.state.question.question}
       </div>
     )
   }

@@ -779,9 +779,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -801,8 +801,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(QuestionCard).call(this, props));
     _this.state = {
-      questions: []
+      question: []
     };
+    _this.questionsToAsk = _this.questionsToAsk.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -815,26 +816,37 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) {
-        console.log('loaded answers');
+      if (Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length && Object.keys(prevProps.questions).length !== Object.keys(this.props.questions)) {
+        // if questions or answers happen  to be fetched again this will run
+        if (this.state.question.question !== 0) {
+          this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+          this.setState({
+            question: this.filteredQAs.shift()
+          });
+          console.log(this.state);
+        }
+      } // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
+      //   this.setState({ questions: this.props.questions });
+      // } 
+
+    }
+  }, {
+    key: "questionsToAsk",
+    value: function questionsToAsk(questions, questionAnswers) {
+      var questionsToAsk = Object.assign({}, questions);
+
+      for (var key in questionAnswers) {
+        var qId = questionAnswers[key].questionId;
+
+        if (questionsToAsk[qId] !== 'undefined') {
+          delete questionsToAsk[qId];
+        }
       }
 
-      if (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length) {
-        this.setState({
-          questions: this.props.questions
-        });
-      }
-    } // let answerdQuestionIds = {}
-    // questionsAnswersArray.forEach( questionAnswer => {
-    //   answerdQuestionIds[questionAnswer.id] = questionAnswer.questionId;
-    // });
-    // this.unansweredQuestions = [];
-    // for (let key in questions){
-    //   if (answerdQuestionIds[key] === 'undefined'){
-    //     this.unansweredQuestions.push(question[key]);
-    //   }
-    // }
-
+      return Object.keys(questionsToAsk).map(function (key) {
+        return questionsToAsk[key];
+      });
+    }
   }, {
     key: "handlesubmit",
     value: function handlesubmit(form) {
@@ -848,10 +860,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-card"
-      });
+      }, this.state.question.question);
     }
   }]);
 
