@@ -801,7 +801,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(QuestionCard).call(this, props));
     _this.state = {
-      question: []
+      question: {
+        question: ''
+      }
     };
     _this.questionsToAsk = _this.questionsToAsk.bind(_assertThisInitialized(_this));
     return _this;
@@ -810,26 +812,38 @@ function (_React$Component) {
   _createClass(QuestionCard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchQuestions();
-      this.props.fetchQuestionAnswers(this.props.userId);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length && Object.keys(prevProps.questions).length !== Object.keys(this.props.questions)) {
-        // if questions or answers happen  to be fetched again this will run
-        if (this.state.question.question !== 0) {
-          this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-          this.setState({
-            question: this.filteredQAs.shift()
-          });
-          console.log(this.state);
-        }
-      } // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
-      //   this.setState({ questions: this.props.questions });
-      // } 
+      var _this2 = this;
 
-    }
+      // this.props.fetchQuestions()
+      //   .then(() => this.props.fetchQuestionAnswers(this.props.userId))
+      //   .then(() => { 
+      //     this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+      //     this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
+      //   })
+      Promise.all([this.props.fetchQuestions(), this.props.fetchQuestionAnswers(this.props.userId)]).then(function () {
+        _this2.filteredQAs = _this2.questionsToAsk(_this2.props.questions, _this2.props.questionAnswers);
+
+        _this2.setState({
+          question: _this2.filteredQAs.shift()
+        }, function () {
+          return console.log(_this2.state);
+        });
+      });
+    } // componentDidUpdate(prevProps){
+    //   if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
+    //     // if questions or answers happen  to be fetched again this will run
+    //     if(this.state.question.question.length === 0){
+    //       debugger
+    //       this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+    //       this.setState({ question: this.filteredQAs.shift() });
+    //       console.log(this.state);
+    //     }
+    //   }
+    // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
+    //   this.setState({ questions: this.props.questions });
+    // } 
+    // }
+
   }, {
     key: "questionsToAsk",
     value: function questionsToAsk(questions, questionAnswers) {
@@ -860,6 +874,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // debugger
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-card"
       }, this.state.question.question);

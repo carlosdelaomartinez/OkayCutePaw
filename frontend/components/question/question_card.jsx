@@ -3,32 +3,44 @@ import React from 'react';
 class QuestionCard extends React.Component {
   constructor (props){
     super(props)
-    this.state = {question: []};
+    this.state = {question: {question: ''}};
     this.questionsToAsk = this.questionsToAsk.bind(this);
   }
 
   componentDidMount(){
-    this.props.fetchQuestions();
-    this.props.fetchQuestionAnswers(this.props.userId)
-    
-  }
-  componentDidUpdate(prevProps){
+    // this.props.fetchQuestions()
+    //   .then(() => this.props.fetchQuestionAnswers(this.props.userId))
+    //   .then(() => { 
+    //     this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+    //     this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
+        
+    //   })
 
-    if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
-      // if questions or answers happen  to be fetched again this will run
-      if(this.state.question.question !== 0){
-  
-        this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-        this.setState({ question: this.filteredQAs.shift() });
-        console.log(this.state);
-      }
+    Promise.all([
+      this.props.fetchQuestions(),
+      this.props.fetchQuestionAnswers(this.props.userId)
+    ]).then(() => {
+      this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+      this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
+    })
+  }
+  // componentDidUpdate(prevProps){
+
+  //   if ((Object.keys(prevProps.questionAnswers).length !== Object.keys(this.props.questionAnswers).length) && (Object.keys(prevProps.questions).length !== Object.keys(this.props.questions))){
+  //     // if questions or answers happen  to be fetched again this will run
+  //     if(this.state.question.question.length === 0){
+  //       debugger
+  //       this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+  //       this.setState({ question: this.filteredQAs.shift() });
+  //       console.log(this.state);
+  //     }
       
-    }
+  //   }
     // if(Object.keys(prevProps.questions).length !== Object.keys(this.props.questions).length){
     //   this.setState({ questions: this.props.questions });
       
     // } 
-  }
+  // }
 
   questionsToAsk(questions, questionAnswers){
     let questionsToAsk = Object.assign({}, questions);
@@ -50,6 +62,7 @@ class QuestionCard extends React.Component {
   }
 
   render(){
+    // debugger
     return (
       <div className="question-card">
         {this.state.question.question}
