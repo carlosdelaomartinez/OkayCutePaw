@@ -53,21 +53,24 @@ class QuestionCard extends React.Component {
   render(){
     return (
       <div className="question-card">
-        <form>
-          <label>
-            Improve Your Matches
-          </label>
-          <div>
-            <span>
-              {this.state.question.question}
-            </span>
-              <div onClick={this.handleSkip}>Skip</div>
-              <div className="q-btn-container">
-                <span onClick={this.handlesubmit('No')}>No</span>
-                <span onClick={this.handlesubmit('Yes')}>Yes</span>
-              </div>
-          </div>         
-        </form>
+        <label className="question-card-title">
+          Improve Your Matches
+        </label>
+        <div className="q-card-content">
+          <span className="q-question">
+            {this.state.question.question}
+          </span>
+          <div className="q-clickables">
+            <div onClick={this.handleSkip} className='q-skip-container'>
+              <img src={window.skipURL} alt=""/>
+              Skip
+            </div>
+            <div className="q-btn-container">
+              <span className='q-btn-no q-btn' onClick={this.handlesubmit('No')}>No</span>
+              <span className='q-btn-yes q-btn' onClick={this.handlesubmit('Yes')}>Yes</span>
+            </div>
+          </div>            
+        </div>         
       </div>
     )
   }

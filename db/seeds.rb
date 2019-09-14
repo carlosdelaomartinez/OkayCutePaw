@@ -9,7 +9,7 @@
 
 ActiveRecord::Base.transaction do 
 
-  50.times do |i|
+  100.times do |i|
    u = User.create!({
       username: Faker::Internet.username(specifier: 15),
       password: Faker::Internet.password(min_length: 6),

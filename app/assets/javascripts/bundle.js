@@ -877,13 +877,27 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-card"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Improve Your Matches"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.question.question), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleSkip
-      }, "Skip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "question-card-title"
+      }, "Improve Your Matches"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "q-card-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "q-question"
+      }, this.state.question.question), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "q-clickables"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSkip,
+        className: "q-skip-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.skipURL,
+        alt: ""
+      }), "Skip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "q-btn-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "q-btn-no q-btn",
         onClick: this.handlesubmit('No')
       }, "No"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "q-btn-yes q-btn",
         onClick: this.handlesubmit('Yes')
       }, "Yes")))));
     }
@@ -1185,7 +1199,9 @@ function (_React$Component) {
   _createClass(UsersIndex, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-bar-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_question_question_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "This is User Index"));
     }

@@ -7,7 +7,7 @@ class UsersIndex extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="main-page">
         <div className='nav-bar-container'>
           <Navbar />
           <GreetingContainer />
