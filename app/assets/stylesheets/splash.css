@@ -11,11 +11,10 @@
 
 .splash-content {
   min-height: 768px;
-  
+  overflow: hidden;
 }
 
 .splash-header-container{
-  margin-top: 25px;
   display:flex;
   justify-content: center;
 
@@ -65,7 +64,7 @@
 .splash-text {
   display: flex;
   flex-direction: column;
-  width: 944px;
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -101,6 +100,13 @@
 
 .splash-top {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.splash-top-text {
+  width: 460px;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -113,7 +119,7 @@
   padding-top: 20px;
 }
 .splash-signup-container, .splash-tos-container {
-  width: 944px;
+  width: 100%;
 }
 .splash-tos-container  {
     margin: 0 0 20px 0;
@@ -143,15 +149,31 @@ height: 20px;
 }
 
 .color3 {
-  background-color: #21c3fd;
-  transition: 0.5s;
-}
-
-.color4 {
   background-color: #21bd66;
   transition: 0.5s;
 }
 
+.color4 {
+  background-color: #21c3fd;
+  transition: 0.5s;
+  
+}
+.splash-image-holder{
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  height: 510px;
+  width: 484px;
+  position: relative;
+  overflow: hidden;
+}
+.splash-dog{
+  transition: 0.5s;
+  position: absolute;
+}
+.hidden {
+  opacity: 0;
+}
 }
 
 

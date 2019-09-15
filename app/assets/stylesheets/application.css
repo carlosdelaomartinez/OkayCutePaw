@@ -38,6 +38,7 @@ time, mark, audio, video {
   box-sizing: inherit;
   background: transparent;
   font-family: 'IBM Plex Sans', sans-serif;
+  border-style: none;
 }
 
 button:focus {outline:0;}
@@ -50,6 +51,12 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+input {
+  font-family: inherit;
+  font-size: 15px;
+  
+}
+
 
 
 .all{
