@@ -95,7 +95,7 @@ class SessionForm extends React.Component {
 
   render() {
     const formToRender = (this.props.formType === 'Sign up' ? (
-      <form className="session-form">
+      <div className="session-form">
         <label>
           Name:      
         </label>
@@ -109,13 +109,13 @@ class SessionForm extends React.Component {
         </label>
         <input type="text" onChange={this.update('location')} placeholder='Location' value={this.state.location} />
 
-      </form>
+      </div>
     ) : '')
     let idx = this.props.errors.length - 1
     let error = this.props.errors[idx]
 
     return (
-      <div className="auth-container">
+      <form className="auth-container" onSubmit={this.handleSubmit} >
         <div className="session-header-container">
           <div className='session-header'>
             <span className='session-logo logo'>okcutepaw</span>
@@ -139,22 +139,22 @@ class SessionForm extends React.Component {
             <i>🐕</i>
           </div>
           <div className="session-form-container">
-            <form className="session-form">
+            <div className="session-form">
               <label>Username:</label>
               <input type='text' onChange={this.update('username')} placeholder='Username' value={this.state.name} value={this.state.username} />             
               <label>Password:</label>
               <input type='password' onChange={this.update('password')} placeholder='Password' value={this.state.password} />             
              
-            </form>
+            </div>
             {formToRender}
             <div className="session-buttons-container">
-              <button onClick={this.handleSubmit} className="session-type-button"> {this.props.formType === 'login' ? 'Sign in' : 'Sign up'}</button>
-              <button className="session-demo-button" onClick={this.handleDemoLogin}>Sing In With Demo User</button>  
+              <button className="session-type-button"> {this.props.formType === 'login' ? 'Sign in' : 'Sign up'}</button>
+              <div className="session-demo-button" onClick={this.handleDemoLogin}>Sing In With Demo User</div>  
             </div>
           </div>
           
         </div>
-      </div>
+      </form>
       )
     }
   }

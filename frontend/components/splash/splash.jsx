@@ -38,7 +38,8 @@ class SplashPage extends React.Component {
 
           <div className='splash-top'>
             <div className='splash-text'>
-              <h3>DOGS DESERVE BETTER</h3>
+              <h3 className=".splash-head-text">DOGS DESERVE</h3>
+              <h3 className=".splash-head-text">BETTER</h3>
               <div className="greet-text">They deserve you.On OkCutePaw, dogs are more than just a photo. They have stories to tell and snuggles to share. Find a dog who notices you for who you are, not what you look like. Feed them, care for them be their friend, because they'll always be yours.  Because every dog deserves a home. </div>
 
             </div>
