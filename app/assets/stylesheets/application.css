@@ -72,13 +72,7 @@ input {
   height: 100%;
   background-color: green;
 }
-.nav-bar {
-  display: flex;
-  background-color: #104da1;
-  width: 100%;
-  height: 66px;
-  align-items: center;
-}
+
 
 .main-content {
   background-color: rgb(215, 241, 241);

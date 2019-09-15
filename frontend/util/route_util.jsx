@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const Auth = ({ loggedIn, path, component: Component }) => (
-  <Route path={path} render={props => (loggedIn ? <Redirect to="/users" /> : <Component {...props} />)} />
+  <Route path={path} render={props => (loggedIn ? <Redirect to="/home" /> : <Component {...props} />)} />
 );
 
 const Protected = ({ loggedIn, path, component: Component }) => (
