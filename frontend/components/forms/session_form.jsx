@@ -118,7 +118,7 @@ class SessionForm extends React.Component {
       <form className="auth-container" onSubmit={this.handleSubmit} >
         <div className="session-header-container">
           <div className='session-header'>
-            <span className='session-logo logo'>okcutepaw</span>
+            <Link to={'/'} className='session-logo logo'>okcutepaw</Link>
             <div className="error-container" >
               <span className='session-error' key={idx}>{error}</span>
             </div>

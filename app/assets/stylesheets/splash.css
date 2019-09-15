@@ -15,6 +15,7 @@
 }
 
 .splash-header-container{
+  margin-top: 25px;
   display:flex;
   justify-content: center;
 
@@ -114,12 +115,16 @@
 .splash-signup-container, .splash-tos-container {
   width: 944px;
 }
-.splash-tos-container {
-    margin: 10px 0;
+.splash-tos-container  {
+    margin: 0 0 20px 0;
     font-size: 12px;
 }
+.tos {
+  width: 284px;
+  text-overflow: clip
+}
 .splash-header-sub{
-height: 20px
+height: 20px;
 }
 
 .splash-footer {

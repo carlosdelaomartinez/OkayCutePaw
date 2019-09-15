@@ -26,7 +26,9 @@ class SplashPage extends React.Component {
           <div className='splash-header-container'>
             <div className='splash-header'>
               <div className="splash-header-sub">
-                <span className="main-logo logo">okcutepaw</span>
+                <span className="main-logo logo">
+                  <img src={window.splashlogoURL}/>
+                </span>
               </div>
               <div className="splash-header-sub">
                 <span className="splash-header-span">Have an account?</span>
@@ -46,7 +48,7 @@ class SplashPage extends React.Component {
 
             <div className='splash-img'></div>
             <div className='splash-tos-container'>
-              <span>By clicking join you do not agree to our terms and conditions</span>
+              <div className='tos'>By clicking join you do not agree to our terms and conditions</div>
             </div>
             <div className="splash-signup-container">
               <Link to={'/signup'} className="splash-signup">Join OkCutePaw</Link>
