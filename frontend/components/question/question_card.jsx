@@ -16,7 +16,7 @@ class QuestionCard extends React.Component {
       this.props.fetchQuestionAnswers(this.props.userId)
     ]).then(() => {
       this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
-      this.setState({ question: this.filteredQAs.shift() }, () => console.log(this.state))
+      this.setState({ question: this.filteredQAs.shift() })
     })
   }
 
