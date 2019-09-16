@@ -31,6 +31,8 @@ class Api::QuestionAnswersController < ApplicationController
     end
   end
 
+#  QuestionAnswer.where(user_id: 1, user_id: 51, answer: true)
+# QuestionAnswer.where(user_id: 1, user_id: 51, answer: true).count
 
   private 
   def answer_params

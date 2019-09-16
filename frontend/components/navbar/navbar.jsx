@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const Navbar = () => (
+const Navbar = (props) => (
   <div className="nav-bar">  
     <div className='left-nav'>
       <Link className='nav-logo-container' to={`/home`}>
@@ -24,8 +24,12 @@ const Navbar = () => (
       </Link>
     </div>
     <div className='right-nav'>
-      <Link className="profile"><i className="flaticon-dog"></i>Profile</Link>
-      <Link className="personal-profile">Personal Profile links</Link>
+      <Link className="nav-profile link-container" to={`/users/${props.currentUser.id}`}>
+        <img className='nav-profile-img' src={props.currentUser.photoUrl} alt=""/>
+        {props.currentUser.name}
+      </Link>
+      <a href="#" className="link-container nav-git">Github Link</a>
+      <a href="#" className="link-container nav-linkedin">Linked In</a>
     </div>
  
   </div>

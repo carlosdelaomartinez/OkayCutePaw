@@ -1,4 +1,4 @@
-@media only screen and (min-width: 768px) {
+
   .auth-container {
     display: flex;
     flex-direction: column;
@@ -179,4 +179,3 @@
   /* * {
   border: 1px solid black !important;
   } */
-}

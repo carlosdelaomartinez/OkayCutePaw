@@ -1,4 +1,4 @@
-@media only screen and (min-width: 768px) {
+
   .splash {
   display: flex;
   flex-direction: column;
@@ -174,7 +174,7 @@ height: 20px;
 .hidden {
   opacity: 0;
 }
-}
+
 
 
 /* * {

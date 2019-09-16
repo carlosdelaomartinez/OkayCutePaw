@@ -4,7 +4,7 @@ import { clearInterval } from 'timers';
 class SplashPage extends React.Component {
   constructor(props){
     super(props);
-    this.state = { color: 'color1', dog: 1}
+    this.state = { color: 'color4', dog: 4}
   }
   componentDidMount(){
     this.colorInterval = setInterval(() => {

@@ -1,24 +1,37 @@
-import React from 'react';
-import UserShowCard from '../user/userShowCard'
-import Navbar from '../navbar/navbar';
-import GreetingContainer from '../greeting/greeting_container';
-import QuestionContainer from '../question/question_container';
-class UsersIndex extends React.Component {
+import React from 'react'
+
+
+class UserIndex extends React.Component {
+  constructor(props){
+    super(props)
+    this.generateUserList = this.generateUserList.bind(this);
+  }
+  generateUserList(){
+    const {currentUser} = this.props;
+    let users = Object.assign({}, this.props.users);
+    delete users[currentUser.id];
+    if(this.props.sort === 'top-matches'){
+
+    } else {
+
+    }
+  }
 
   render(){
-    return(
-      <div className="main-page">
-        <div className='nav-bar-container'>
-          <Navbar />
-          <GreetingContainer />
-          <QuestionContainer/>
+    return (
+      <div className='user-discovery'>
+        <div className='user-discovery-content'>
+          <div className='user-disc-title'>
+            <span>{this.props.title}</span>
+          </div>  
+          <div className='user-discovery-content-row'>
+            {this.generateUserList()}
+          </div>
         </div>
-        <span>This is User Index</span>
+        
       </div>
     )
   }
-
 }
 
-
-export default UsersIndex
+export default UserIndex;

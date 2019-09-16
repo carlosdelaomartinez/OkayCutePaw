@@ -12,10 +12,17 @@ class Api::UsersController < ApplicationController
   #possibly filter by distance
  # ADD LOGIC FOR LOOKING FOR It should be the opposite of the user 
 # show all the users except the current one
-    def index 
-      @users = User.where('id IS NOT ?', current_user.id)
-      render :index
-    end
+  def index 
+    # @users = User.where.not(id: current_user.id)
+    @users = User.all
+
+    render :index
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render :show
+  end
 
   private 
   def user_params
