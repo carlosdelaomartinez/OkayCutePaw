@@ -23,17 +23,13 @@ class HomeIndex extends React.Component {
   
   componentDidMount(){
     const that = this;
-    debugger
-    this.props.fetchUsers().then(() => {
-      for(let id in that.props.users) {
-        that.props.fetchQuestionAnswers(id)
-      }   
-    });
+    this.props.fetchUsers()
+    
   }
   render(){
     return(
       <div className="main-page">
-          <Navbar currentUser={this.props.currentUser}/>
+          <Navbar currentUser/>
           <UserIndex 
             title={`Within ${this.props.currentUser.distance} miles`} 
             users={this.props.users}
@@ -48,8 +44,13 @@ class HomeIndex extends React.Component {
             questionAnswers={this.props.questionAnswers}
             sort={'top-matches'}
           />
-          {/* <QuestionContainer/> */}
-        <span>This is User Index</span>
+          <QuestionContainer/>
+
+        <footer className="footer">
+          <div>All Icons except for Messages made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          <div>Messenges Icon Made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          <span>promotional content</span>
+        </footer>
       </div>
     )
   }

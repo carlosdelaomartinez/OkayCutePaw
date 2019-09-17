@@ -1,4 +1,5 @@
 import React from 'react'
+import UserShowCard from '../user/userShowCard';
 
 
 class UserIndex extends React.Component {
@@ -11,9 +12,16 @@ class UserIndex extends React.Component {
     let users = Object.assign({}, this.props.users);
     delete users[currentUser.id];
     if(this.props.sort === 'top-matches'){
-
+      return Object.keys(users)
+        .map(id => users[id])
+        .sort((a,b) => b.matchPercent - a.matchPercent)
+        .slice(0, 14)
+        .map(user => <UserShowCard user={user} />)
     } else {
-
+      return Object.keys(users)
+        .map(id => users[id])
+        .slice(0, 14)
+        .map((user, i) => <UserShowCard user={user} key={i}/>)
     }
   }
 
@@ -25,7 +33,22 @@ class UserIndex extends React.Component {
             <span>{this.props.title}</span>
           </div>  
           <div className='user-discovery-content-row'>
-            {this.generateUserList()}
+            <div className='user-slider-outer'>
+              <button className="browse-left browse-btn" >
+                <img src={window.leftarrowURL} />
+              </button>
+              <div className="slider-container">
+                <div className='user-slider-inner'>
+                  {this.generateUserList()}
+                </div>
+              </div>
+                    
+              <button className="browse-right browse-btn">
+                <img src={window.rightarrowURL} alt="" />
+              </button>          
+
+            </div>
+              
           </div>
         </div>
         

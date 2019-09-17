@@ -31,11 +31,9 @@ class Api::QuestionAnswersController < ApplicationController
     end
   end
 
-#  QuestionAnswer.where(user_id: 1, user_id: 51, answer: true)
-# QuestionAnswer.where(user_id: 1, user_id: 51, answer: true).count
-
   private 
   def answer_params
     params.require(:question_answer).permit(:question_id, :answer, :user_id)
   end
 end
+

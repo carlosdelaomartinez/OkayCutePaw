@@ -8,15 +8,59 @@
   width: 910px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .user-disc-title {
   height: 60px;
   width: 100%;
 }
+.user-slider-outer {
+  display: flex;
+  flex-direction: row;
+  width: 910px;
+}
+.slider-container{
+  width: 910px;
+  overflow: hidden;
+}
+.user-slider-inner {
+  width: 3790px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transform: translateX(0px);
+
+  
+}
 .user-discovery-content-row {
   height: 328px;
-  width: 100%;
+  width: 910px;
+  display: flex;
+  justify-content: flex-start;
+  
+
 }
+
+.browse-btn {
+  position: absolute;
+  z-index: 2;
+  border-radius: 40px;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border-style: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2)
+}
+.browse-left{
+  left: -20px;
+  top: 170px;
+}
+.browse-right {
+  right: -20px;
+  top: 170px;
+}
+
+
 /* * {
   border: 1px solid black !important;
 } */
