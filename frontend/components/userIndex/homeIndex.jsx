@@ -30,13 +30,6 @@ class HomeIndex extends React.Component {
     return(
       <div className="main-page">
           <Navbar currentUser/>
-          <UserIndex 
-            title={`Within ${this.props.currentUser.distance} miles`} 
-            users={this.props.users}
-            sort={'distance'}
-            questionAnswers={this.props.questionAnswers}
-            currentUser={this.props.currentUser}
-          />
           <UserIndex
             title={`Top matches`}
             currentUser={this.props.currentUser}
@@ -44,6 +37,14 @@ class HomeIndex extends React.Component {
             questionAnswers={this.props.questionAnswers}
             sort={'top-matches'}
           />
+          <UserIndex 
+            title={`Within ${this.props.currentUser.distance} miles`} 
+            users={this.props.users}
+            sort={'distance'}
+            questionAnswers={this.props.questionAnswers}
+            currentUser={this.props.currentUser}
+          />
+          
           <QuestionContainer/>
 
         <footer className="footer">
