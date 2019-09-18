@@ -29,7 +29,7 @@ ActiveRecord::Base.transaction do
       location: Faker::Address.zip
     })
   q = Question.create!({question: Faker::Lorem.question })
-  u.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/#{i}.jpg"), filename: "#{i}")
+  # u.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/#{i}.jpg"), filename: "#{i}")
   end
   User.all.each do |user|
     Question.all.each do |question|
@@ -55,6 +55,6 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
-  demo.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/demo.jpg"), filename: "demo.jpg")
+  # demo.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/demo.jpg"), filename: "demo.jpg")
   
 end
