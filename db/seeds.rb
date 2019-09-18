@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# require 'open-uri'
+require 'open-uri'
 
 ActiveRecord::Base.transaction do 
   
@@ -55,6 +55,6 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
-  demo.photo.attach(io: File.open("okaycutepaw-seeds.s3.amazonaws.com/demo.jpg"), filename: "demo.jpg")
+  demo.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/demo.jpg"), filename: "demo.jpg")
   
 end
