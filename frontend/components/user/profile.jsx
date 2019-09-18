@@ -93,7 +93,7 @@ class Profile extends React.Component {
           <div className='profile-banner'>
             <div className='profile-photo-holder'>
               <div className='profile-photo-container'>
-                <img src={this.state.user.photoUrl} alt="" />
+                {/* <img src={this.state.user.photoUrl} alt="" /> */}
               </div>
             </div>
             
