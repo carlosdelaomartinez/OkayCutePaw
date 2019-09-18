@@ -5,10 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+# require 'open-uri'
 
 ActiveRecord::Base.transaction do 
-  dogpics = Dir.children('/Users/carlosdelaomartinez/Documents/seedDogsPhotos')
   
    
   50.times do |i|
@@ -25,13 +24,13 @@ ActiveRecord::Base.transaction do
       aspirations: Faker::Creature::Dog.sound,
       talent: Faker::Job.key_skill,
       traits: Faker::Creature::Dog.breed,
-      needs: Faker::Lorem.sentences(number: 4),
-      hobbies: Faker::Lorem.sentences(number: 4),
+      needs: Faker::Lorem.paragraph,
+      hobbies: Faker::Lorem.paragraph,
       location: Faker::Address.zip
     })
   q = Question.create!({question: Faker::Lorem.question })
   photoName = dogpics[i]
-  u.photo.attach(io: File.open("/Users/carlosdelaomartinez/Documents/seedDogsPhotos/#{photoName}"), filename: "#{photoName}")
+  u.photo.attach(io: open("https://s3.amazonaws.com/okaycutepaw-seeds/#{i}.jpg"), filename: "#{i}")
   end
   User.all.each do |user|
     Question.all.each do |question|
@@ -57,6 +56,6 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
-  demo.photo.attach(io: File.open("/Users/carlosdelaomartinez/Documents/demo.jpg"), filename: "demo.jpg")
+  demo.photo.attach(io: File.open("https://s3.amazonaws.com/okaycutepaw-seeds/demo.jpg"), filename: "demo.jpg")
   
 end

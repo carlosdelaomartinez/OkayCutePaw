@@ -30,7 +30,7 @@ const handleClick = (e) => {
 }
 
  const Navbar = (props) => (
-  <div className="nav-bar">  
+  <div className={`nav-bar ${props.border ? 'border-bottom': ''}`}>  
     <div className='left-nav'>
       <Link className='nav-logo-container' to={`/home`}>
         <img className="nav-logo" src={window.mainlogoURL} alt="" />

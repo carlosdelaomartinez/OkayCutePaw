@@ -37,15 +37,27 @@ class HomeIndex extends React.Component {
             questionAnswers={this.props.questionAnswers}
             sort={'top-matches'}
           />
+          <div className='bonus-content'>
+            <div className='bonus-container paw1'>
+              <div className='question-card'>
+                <img className='paw-placeholder' src={window.leftpawURL} alt=""/>
+              </div>
+            <QuestionContainer />
+            <div className='question-card paw2'>
+              <img className='paw-placeholder' src={window.rightpawURL} alt=""/>
+            </div>
+            </div>
+          </div>
           <UserIndex 
-            title={`Within ${this.props.currentUser.distance} miles`} 
+            // title={`Within ${this.props.currentUser.distance} miles`} 
+            title={'Mix and Match'}
             users={this.props.users}
             sort={'distance'}
             questionAnswers={this.props.questionAnswers}
             currentUser={this.props.currentUser}
           />
+       
           
-          <QuestionContainer/>
 
         <footer className="footer">
           <div>All Icons except for Messages made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
