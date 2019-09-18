@@ -29,7 +29,7 @@ ActiveRecord::Base.transaction do
       location: Faker::Address.zip
     })
   q = Question.create!({question: Faker::Lorem.question })
-  # u.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/#{i}.jpg"), filename: "#{i}")
+  u.photo.attach(io: open("https://okaycutepaw-seeds.s3.amazonaws.com/#{i}.jpg"), filename: "#{i}")
   end
   User.all.each do |user|
     Question.all.each do |question|
