@@ -31,6 +31,10 @@ class Api::QuestionAnswersController < ApplicationController
     end
   end
 
+  def destroy
+    current_user.answers.destroy_all
+  end
+
   private 
   def answer_params
     params.require(:question_answer).permit(:question_id, :answer, :user_id)

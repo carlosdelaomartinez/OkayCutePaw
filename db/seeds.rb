@@ -8,9 +8,9 @@
 
 
 ActiveRecord::Base.transaction do 
-  10000.times do |i|
-    q = Question.create!({question: Faker::Lorem.question })
-  end
+  dogpics = Dir.children('/Users/carlosdelaomartinez/Documents/seedDogsPhotos')
+  
+   
   50.times do |i|
    u = User.create!({
       username: Faker::Internet.username(specifier: 15),
@@ -29,7 +29,9 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
-  
+  q = Question.create!({question: Faker::Lorem.question })
+  photoName = dogpics[i]
+  u.photo.attach(io: File.open("/Users/carlosdelaomartinez/Documents/seedDogsPhotos/#{photoName}"), filename: "#{photoName}")
   end
   User.all.each do |user|
     Question.all.each do |question|
@@ -55,6 +57,6 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
+  demo.photo.attach(io: File.open("/Users/carlosdelaomartinez/Documents/demo.jpg"), filename: "demo.jpg")
   
 end
-

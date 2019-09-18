@@ -29,4 +29,10 @@ export const updateQuestionAnswer = (questionAnswer) => (
   })
 );
 
-
+export const deleteQuestionAnswers = () => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/users/${undefined}/question_answers/${undefined}`
+    
+  });
+}

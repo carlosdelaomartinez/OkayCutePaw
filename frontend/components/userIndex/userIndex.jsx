@@ -18,7 +18,7 @@ class UserIndex extends React.Component {
         .map(id => users[id])
         .sort((a,b) => b.matchPercent - a.matchPercent)
         .slice(0, 14)
-        .map(user => <UserShowCard user={user} />)
+        .map((user, i) => <UserShowCard user={user} key={i} />)
     } else {
       return Object.keys(users)
         .map(id => users[id])

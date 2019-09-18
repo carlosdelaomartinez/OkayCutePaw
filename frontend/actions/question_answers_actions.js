@@ -33,3 +33,7 @@ export const updateQuestionAnswer = (questionAnswer) => dispatch => (
   QuestionAnswersAPIutil.updateQuestionAnswer(questionAnswer)
     .then(questionAnswer => dispatch(receiveQuestionAnswer(questionAnswer)))
 );
+//for development
+export const deleteQAs = () => dispatch => (
+  QuestionAnswersAPIutil.deleteQuestionAnswers()
+)

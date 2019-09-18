@@ -15,7 +15,7 @@ class QuestionCard extends React.Component {
       this.props.fetchQuestions(),
       this.props.fetchQuestionAnswers(this.props.userId)
     ]).then(() => {
-      this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers);
+      this.filteredQAs = this.questionsToAsk(this.props.questions, this.props.questionAnswers)
       this.setState({ question: this.filteredQAs.shift() })
     })
   }
@@ -41,7 +41,14 @@ class QuestionCard extends React.Component {
         answer: form === 'Yes' ? true : false
       }
       this.props.createQuestionAnswer(qA);
-      this.setState({ question: this.filteredQAs.shift() })
+      if (this.filteredQAs.length > 1){
+        this.setState({ question: this.filteredQAs.shift() })
+      } else if (this.filteredQAs.length === 0) {
+        this.setState({question: {question: 'Would you like to reset?'}})
+      }else {
+        this.props.deleteQAs();
+      }
+      
     }
   }
   

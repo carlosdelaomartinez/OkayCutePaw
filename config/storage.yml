@@ -28,6 +28,10 @@ amazon_prod:
   region: <%= Rails.application.credentials.aws[:region] %>
   bucket: <%= Rails.application.credentials.aws[:prod][:bucket] %>
 
+google: 
+  api_key: <%= Rails.application.credentials.google[:api_key] %> 
+
+
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionCard from './question_card';
-import {fetchQuestionAnswers, createQuestionAnswer, fetchQuestionAnswer} from '../../actions/question_answers_actions';
-import {fetchQuestions, fetchQuestion} from '../../actions/question_actions';
+import {fetchQuestionAnswers, createQuestionAnswer, fetchQuestionAnswer, deleteQAs} from '../../actions/question_answers_actions';
+import {fetchQuestions, fetchQuestion, } from '../../actions/question_actions';
 
 const mapStateToProps = state => ({
   userId: state.session.id,
@@ -14,7 +14,8 @@ const mapDispatchToProps = dispatch => ({
   fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
   fetchQuestionAnswer: (userId, questionId) => dispatch(fetchQuestionAnswer(userId, questionId)),
   fetchQuestionAnswers: (userId) => dispatch(fetchQuestionAnswers(userId)),
-  createQuestionAnswer: (questionAnswer) => dispatch(createQuestionAnswer(questionAnswer))
+  createQuestionAnswer: (questionAnswer) => dispatch(createQuestionAnswer(questionAnswer)),
+  deleteQAs: () => dispatch(deleteQAs())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionCard);
