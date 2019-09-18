@@ -8,7 +8,9 @@
 require 'open-uri'
 
 ActiveRecord::Base.transaction do 
-  
+  User.destroy_all
+  Question.destroy_all
+  QuestionAnswer.destroy_all
    
   50.times do |i|
    u = User.create!({
@@ -29,7 +31,8 @@ ActiveRecord::Base.transaction do
       location: Faker::Address.zip
     })
   q = Question.create!({question: Faker::Lorem.question })
-  u.photo.attach(io: open("https://okaycutepaw-seeds.s3.amazonaws.com/#{i}.jpg"), filename: "#{i}")
+  puts "#{i}.jpg"
+  u.photo.attach(io: open("https://okaycutepaw-seeds.s3-us-west-1.amazonaws.com/#{i}.jpg"), filename: "#{i}.jpg")
   end
   User.all.each do |user|
     Question.all.each do |question|
@@ -55,6 +58,6 @@ ActiveRecord::Base.transaction do
       hobbies: Faker::Lorem.sentences(number: 4),
       location: Faker::Address.zip
     })
-  # demo.photo.attach(io: open("okaycutepaw-seeds.s3.amazonaws.com/demo.jpg"), filename: "demo.jpg")
+  demo.photo.attach(io: open("https://okaycutepaw-seeds.s3-us-west-1.amazonaws.com/demo.jpg"), filename: "demo.jpg")
   
 end
