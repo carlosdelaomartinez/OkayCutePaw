@@ -17,12 +17,12 @@ class UserIndex extends React.Component {
       return Object.keys(users)
         .map(id => users[id])
         .sort((a,b) => b.matchPercent - a.matchPercent)
-        .slice(0, 14)
+        .slice(0, 20)
         .map((user, i) => <UserShowCard user={user} key={i} />)
     } else {
       return Object.keys(users)
         .map(id => users[id])
-        .slice(0, 14)
+        .slice(0, 20)
         .map((user, i) => <UserShowCard user={user} key={i}/>)
     }
   }
@@ -36,7 +36,6 @@ class UserIndex extends React.Component {
         leftBtn.classList.remove('browse-btn-hide');
         slider.classList.remove('slide0');
         slider.classList.add('slide1');
-        fade.classList.add('fade');
         this.browse += 1;
       } else if (this.browse === 1 && form === 'right'){
         slider.classList.remove('slide1')
@@ -49,11 +48,13 @@ class UserIndex extends React.Component {
       } else if (this.browse === 3 && form === 'right'){
         slider.classList.remove('slide3')
         slider.classList.add('slide4')
+        fade.classList.remove('fade');
         this.browse += 1;
         rightBtn.classList.add('browse-btn-hide')
       } else if (this.browse === 4 && form === 'left'){
         slider.classList.remove('slide4')
         slider.classList.add('slide3')
+        fade.classList.add('fade');
         this.browse -= 1;
         rightBtn.classList.remove('browse-btn-hide')
       } else if (this.browse === 3 && form === 'left') {
@@ -68,7 +69,6 @@ class UserIndex extends React.Component {
         leftBtn.classList.add('browse-btn-hide');
         slider.classList.remove('slide1');
         slider.classList.add('slide0');
-        fade.classList.remove('fade');
         this.browse -= 1;
       }
     }
@@ -92,7 +92,7 @@ class UserIndex extends React.Component {
                   {this.generateUserList()}
                 </div>
               </div>
-              <div className='browse-fade-border'></div>    
+              <div className='browse-fade-border fade'></div>    
               <button className="browse-right browse-btn" onClick={this.handleBrowse('right')}>
                 <img src={window.rightarrowURL} alt="" />
               </button>          

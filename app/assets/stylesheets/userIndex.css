@@ -3,12 +3,14 @@
   justify-content: center;
   width: 100%;
   height: 384px;
+
 }
 .user-discovery-content {
   width: 910px;
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 4px;
 }
 .user-disc-title {
   height: 60px;
@@ -22,6 +24,7 @@
 .slider-container{
   width: 910px;
   overflow: hidden;
+  border-radius: 4px;
 }
 .user-slider-inner {
   width: 3790px;
@@ -88,7 +91,7 @@
   right: 0;
   top: -5%;
   width: 30px;
-  height: 110%;
+  height: 100%;
 }
 .fade {
   background-image: linear-gradient(90deg,rgba(243,245,249,0),#f3f5f9);
