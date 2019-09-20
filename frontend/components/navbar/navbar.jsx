@@ -36,7 +36,7 @@ const handleClick = (e) => {
       <Link className='nav-logo-container' to={`/home`}>
         <img className="nav-logo" src={window.mainlogoURL} alt="" />
       </Link>
-      <Link className="doubletake-container link-container" to={'#'}>
+      {/* <Link className="doubletake-container link-container" to={'#'}>
         <img src={window.doubletakeURL} />
         <span>DoubleTake</span>
       </Link>
@@ -51,7 +51,7 @@ const handleClick = (e) => {
       <Link className="messages-logo-container link-container" to={'#'}>
         <img src={window.chatURL} alt="" />
         <span>messages</span>
-      </Link>
+      </Link> */}
     </div>
     <div className='right-nav'>
       <div className='profile-handler'>
