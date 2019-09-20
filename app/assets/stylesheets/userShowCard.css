@@ -58,4 +58,15 @@
   background-color: #00d280;
   border: 1px solid #00d280;
 }
+.user-snapshot-text {
+  padding: 10px;
+  color: #949aa6;
+  font-size: 15px;
+  text-align: center;
+}
+
+.user-disc-title {
+  font-size: 20px;
+  
+}
 

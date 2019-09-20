@@ -7,6 +7,7 @@ import QuestionContainer from '../question/question_container';
 import {fetchUsers} from '../../actions/session_actions';
 import UserIndex from './userIndex';
 import { fetchQuestionAnswers } from '../../actions/question_answers_actions';
+import {fetchUserDistances, createUserDistance, updateUserDistance} from '../../actions/distance_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.entities.users[state.session.id],
@@ -20,11 +21,36 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class HomeIndex extends React.Component {
-  
+  constructor(props){
+    super(props)
+  }
+
   componentDidMount(){
+    window.scrollBy(0, -1000000)
+
     const that = this;
+    let promises = [];
+    const {currentUser, users, updateUserDistance, createUserDistance, fetchUserDistances} = this.props
     this.props.fetchUsers()
-    
+    //   .then(()=>{
+    //   if (!localStorage.getItem('user',`loggedIn${currentUser.id}`)){
+    //     Object.keys(users).forEach( id => {
+    //       promises += [updateUserDistance(id).then(()=>{}, (id)=>createUserDistance)]
+    //     })
+    //     Promise.all(promises).then(() => (localStorage.setItem('user', `loggedIn${currentUser.id}`)));
+        
+    //   } else {
+    //     fetchUserDistances(currentUser.id)
+    //   }
+    // });
+    // const service = new google.maps.DistanceMatrixService();
+    // service.getDistanceMatrix({
+    //   origins: [94806],
+    //   desinations: [95616]
+    // }, (response, status) => console.log(response, status))
+    //TO GO IN HTMLERB
+    //   < script src = "https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initialize"
+    // async defer ></script >
   }
   render(){
     return(
@@ -48,6 +74,14 @@ class HomeIndex extends React.Component {
             </div>
             </div>
           </div>
+          <UserIndex
+              // title={`Within ${this.props.currentUser.distance} miles`} 
+              title={'Snapshots'}
+              users={this.props.users}
+              sort={'snapshots'}
+              questionAnswers={this.props.questionAnswers}
+              currentUser={this.props.currentUser}
+          />
           <UserIndex 
             // title={`Within ${this.props.currentUser.distance} miles`} 
             title={'Mix and Match'}

@@ -1,0 +1,1 @@
+json.extract! @user_distance, :id, :user_id, :distant_user_id, :distance

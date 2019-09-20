@@ -8,12 +8,6 @@ const usersReducer = (state = {}, action) => {
       return Object.assign({}, state, { [action.user.id]: action.user });
     // return { [action.user.id]: action.user }
     case RECEIVE_USERS:
-      // let userzips = [];
-      // for (let id in action.users){
-      //   userzips.push( action.users[id].location)
-      // }
-      
-      // console.log(userzips);
       return Object.assign({}, state, action.users);
     default:
       return state;

@@ -40,6 +40,10 @@ class User < ApplicationRecord
   has_many :questions, 
   through: :answers,
   source: :question
+
+  has_many :distances,
+  foreign_key: :user_id,
+  class_name: :UserDistance
   
   def self.find_by_creds(username, password) 
     user = User.find_by(username: username)

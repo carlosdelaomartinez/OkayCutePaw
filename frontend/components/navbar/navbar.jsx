@@ -29,6 +29,7 @@ const handleClick = (e) => {
   }
 }
 
+
  const Navbar = (props) => (
   <div className={`nav-bar ${props.border ? 'border-bottom': ''}`}>  
     <div className='left-nav'>
@@ -55,7 +56,7 @@ const handleClick = (e) => {
     <div className='right-nav'>
       <div className='profile-handler'>
         <div className="nav-profile link-container" onClick={handleClick}>
-          {/* <img className='nav-profile-img' src={props.currentUser.photoUrl} alt="" /> */}
+          <img className='nav-profile-img' src={props.currentUser.photoUrl} alt="" />
           {props.currentUser.name}
           <div className="arrow-icons">
             <img className='menu-arrow arrowup hide-nav-item' src={window.arrupURL} alt="" />
@@ -65,7 +66,7 @@ const handleClick = (e) => {
         </div>
         <div id='nav-menu' className='hide-nav-item'>
           <Link to={`/users/${props.currentUser.id}`} className='nav-menu-item'>Profile</Link>
-          <div onClick={props.logout} className='nav-menu-item nav-sign-out'>Sign Out</div>
+           <div onClick={() => (props.logout().then(localStorage.removeItem('user')))} className='nav-menu-item nav-sign-out'>Sign Out</div>
         </div>
       </div>
 
