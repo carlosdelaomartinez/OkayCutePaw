@@ -128,7 +128,7 @@ class Profile extends React.Component {
             {this.generateProfileCardInfo()}
           </div>
           <div className='important-traits'>
-            {this.generateDetails()}
+            {/* {this.generateDetails()} */}
           </div>
         </div>
         <footer className="footer">

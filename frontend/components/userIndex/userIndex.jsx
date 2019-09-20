@@ -20,23 +20,25 @@ class UserIndex extends React.Component {
         .sort((a,b) => b.matchPercent - a.matchPercent)
         .slice(0, 20)
         .map((user, i) => <UserShowCard user={user} key={i} />)
-    } else if (this.props.sort === 'distance') {
+    } else {
       return Object.keys(users)
         .map(id => users[id])
         .slice(0, 20)
         .map((user, i) => <UserShowCard user={user} key={i}/>)
-    } else {
-      let dogs = Object.keys(users).map(id => users[id])
-      if (dogs.length === 100){
-        for (let i = 0; i < dogs.length; i++) {
-          let x = Math.floor(Math.random() * (dogs.length + 1))
-          let temp = dogs[i]
-          dogs[i] = dogs[x]
-          dogs[x] =  temp;
-        }
-      }
-      return dogs.slice(0, 20).map((user, i) => <UserSnapShot user={user} key={i} />)
     }
+    // if (this.props.sort === 'distance') 
+    // } else {
+    //   let dogs = Object.keys(users).map(id => users[id])
+    //   if (dogs.length === 100){
+    //     for (let i = 0; i < dogs.length; i++) {
+    //       let x = Math.floor(Math.random() * (dogs.length + 1))
+    //       let temp = dogs[i]
+    //       dogs[i] = dogs[x]
+    //       dogs[x] =  temp;
+    //     }
+    //   }
+    //   return dogs.slice(0, 20).map((user, i) => <UserSnapShot user={user} key={i} />)
+    // }
   }
   handleBrowse(form){
     return (e) => {

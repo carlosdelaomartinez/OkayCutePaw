@@ -74,14 +74,14 @@ class HomeIndex extends React.Component {
             </div>
             </div>
           </div>
-          <UserIndex
+          {/* <UserIndex
               // title={`Within ${this.props.currentUser.distance} miles`} 
               title={'Snapshots'}
               users={this.props.users}
               sort={'snapshots'}
               questionAnswers={this.props.questionAnswers}
               currentUser={this.props.currentUser}
-          />
+          /> */}
           <UserIndex 
             // title={`Within ${this.props.currentUser.distance} miles`} 
             title={'Mix and Match'}
