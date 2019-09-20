@@ -78,10 +78,10 @@ class SplashPage extends React.Component {
         <div className="splash-footer">
           <div className="splash-footer-container">
             <div className="splash-text">
-              <span>promotional content</span>
+              <span></span>
             </div>
             <div className="personal-links">
-              <span>links go here</span>
+              <span></span>
             </div>
           </div>
         </div>
