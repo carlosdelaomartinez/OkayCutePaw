@@ -5,11 +5,11 @@ export const fetchUserDistances = (currentUserId) => {
   });
 };
 
-export const createUserDistance = (distanceObject) => {
+
+export const createUserDistance = (userId) => {
   return $.ajax({
     method: 'POST',
-    url: `api/users/${currentUserId}/user_distances/`,
-    data: { distanceObject }
+    url: `api/users/${userId}/user_distances/`
   });
 };
 
