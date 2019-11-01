@@ -26,11 +26,11 @@
 #
 
 class User < ApplicationRecord
-  validates :looking_age_higher, :looking_age_lower, :username, :password_digest, :session_token, :age, :location, presence: true
+  validates :username, :password_digest, :session_token, :age, :location, presence: true
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :looking_age_lower, :numericality => {:greater_than => 0}
   validates :looking_age_higher, :numericality => {:greater_than => :looking_age_lower}
-  validates :looking_for, inclusion: {in: %w(MALE, FEMALE, ALL)}
+  validates :looking_for, inclusion: {in: ["MALE", "FEMALE", "ALL"]}
   validates_uniqueness_of :username
   has_one_attached :photo
 

@@ -1,30 +1,26 @@
-export const fetchUserDistances = (currentUserId) => {
+export const fetchUserDistances = (userPref) => {
   return $.ajax({
     method: 'GET',
-    url: `api/users/${currentUserId}/user_distances`
+    url: `api/users/${userPref.id}/user_distances`,
+    data: {userPref}
   });
 };
 
 
-export const createUserDistance = (userId) => {
+export const createUserDistance = (userPref) => {
   return $.ajax({
     method: 'POST',
-    url: `api/users/${userId}/user_distances/`
+    url: `api/users/${userPref.id}/user_distances/`,
+    data: {userPref}
   });
 };
 
-export const updateUserDistance = (distanceObject) => {
+export const updateUserDistance = (userPref) => {
   return $.ajax({
     method: 'PATCH',
-    url: `api/users/${distanceObject.user_id}/user_distances/${distanceObject.distant_user_id}`,
-    data: { user_distance: distanceObject }
+    url: `api/users/${userPref.id}/user_distances/`,
+    data: { userPref }
   });
 };
 
-export const fetchDistanceFromApi = (userLocation, currUserLocation) => {
-  return $.ajax({
-    method: 'GET',
-    url: `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocation}&destinations=${currUserLocation}&key=${window.googleAPIKey}`
-  })
-}
 //

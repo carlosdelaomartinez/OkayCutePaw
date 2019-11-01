@@ -27,7 +27,7 @@
     width: 944px;
 
   }
-    
+
   .session-container{
     width: 456px;
     height: 521px;
@@ -97,7 +97,27 @@
     border-style: none;
     padding: 10px 15px;
   }
-
+  .looking {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .looking .looking-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  
+  }
+  .looking .age-range {
+    height: 31px;
+    width: 40px;
+    overflow: hidden;
+    margin: 0 10px;
+  }
+  input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
   .session-form label{
     font-size: 15px;
     height: 30px;

@@ -3,6 +3,7 @@ class Api::UserDistancesController < ApplicationController
   ## the user distances will be built upon call
   ## and the distances will all be returned
   ## the distances will be stored based on the user
+  ## Retrieve the first 20 users subsequent scrolling will render more users. 
   def create
     ActiveRecord::Base.transaction do 
       User.all.where.not(id: current_user.id).each do |user|
@@ -15,7 +16,8 @@ class Api::UserDistancesController < ApplicationController
         user_distance = UserDistance.create!(user_id: current_user.id, distant_user_id: user.id, distance: distance)
         end
     end
-    
+    @user_distance = UserDistance.where(user_id: current_user.id);
+    render :show
     # # @user_distance = UserDistance.new(distance_params)
     # if @user_distance.save
     #   render :show
@@ -26,7 +28,7 @@ class Api::UserDistancesController < ApplicationController
   end
 
   def update
-    debugger
+    # debugger
     @user_distance = UserDistance.find_by(user_id: current_user.id, distant_user_id: params[:id])
     if @user_distance.update(distance_params)
       render :show

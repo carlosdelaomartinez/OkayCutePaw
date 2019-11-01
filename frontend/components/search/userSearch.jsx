@@ -1,9 +1,54 @@
 import React from 'react'
+import {Connect} from 'react-redux'
 import Navbar from '../navbar/navbar'
+import { connect } from 'react-redux'
+import {fetchUserDistances} from '../../actions/distance_actions'
+import {fetchUser, fetchUsers} from '../../actions/session_actions'
+
+const mapStateToProps = state => ({
+currentUser: state.entities.users[state.session.id]
+});
+
+const mapDispatchToProps = dispatch => ({
+fetchUserDistances: userPref => dispatch(fetchUserDistances(userPref)),
+fetchUser: id => dispatch(fetchUser(id)),
+fetchUsers: userPref => dispatch(fetchUsers(userPref))
+});
+
+
 class UserSearch extends React.Component {
   constructor(props){
     super(props)
+
+    const {
+      id,
+      distance,
+      lookingFor,
+      location,
+      lookingAgeLower,
+      lookingAgeHigher
+    } = this.props.currentUser
+    this.state = {
+      id: id,
+      distance: distance,
+      looking_for: lookingFor,
+      location: location,
+      looking_age_lower: lookingAgeLower,
+      looking_age_higher: lookingAgeHigher
+    }
+    
   }
+
+
+  componentDidMount(){
+    //fetch the users using the default search settings of the logged in user. 
+    // fetching with the baked in user preferences returns all other users. 
+    // updating the fetch info fetches all users including the user because the user needs to be updated
+    console.log(this.state)
+    let user = this.state;
+    this.props.fetchUsers(user);
+  }
+
   render(){
     return(<div className="user-search">
       <Navbar></Navbar>
@@ -20,4 +65,4 @@ class UserSearch extends React.Component {
   }
 }
 
-export default UserSearch;
+export default connect(mapStateToProps, mapDispatchToProps)(UserSearch);

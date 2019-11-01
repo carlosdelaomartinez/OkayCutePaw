@@ -133,11 +133,11 @@ ActiveRecord::Base.transaction do
       u = User.create!({
         username: Faker::Internet.username(specifier: 15),
         password: Faker::Internet.password(min_length: 6),
-        looking_for: 'dog',
+        looking_for: (["MALE", "FEMALE", "ALL"][rand(3)]),
         distance: 5,
         age: Faker::Number.number(digits: 2),
         looking_age_lower: 1,
-        looking_age_higher: rand(1...16),
+        looking_age_higher: rand(2...16),
         human: Faker::FunnyName.name,
         name: Faker::Creature::Dog.name,
         gender: Faker::Creature::Dog.gender,

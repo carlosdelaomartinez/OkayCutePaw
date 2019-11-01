@@ -2,27 +2,27 @@ export const RECEIVE_DISTANCE = 'RECEIVE_DISTANCE';
 export const RECEIVE_DISTANCES = 'RECEIVE_DISTANCES';
 import * as DistAPIutil from '../util/distance_api_util';
 
-const receiveDistance= distance => ({
+const receiveDistance= userPref => ({
   type: RECEIVE_DISTANCE,
-  distance
+  userPref
 });
 
-const receiveDistances = distances => ({
+const receiveDistances = userPref => ({
   type: RECEIVE_DISTANCES,
-  distances
+  userPref
 });
 
-export const fetchUserDistances = currentUserId => dispatch => (
-  DistAPIutil.fetchUserDistances(currentUserId)
+export const fetchUserDistances = userPref => dispatch => (
+  DistAPIutil.fetchUserDistances(userPref)
     .then(distances => dispatch(receiveDistances(distances)))
 );
 
-export const updateUserDistance = distanceObject => dispatch => (
-  DistAPIutil.updateUserDistance(distanceObject)
+export const updateUserDistance = userPref => dispatch => (
+  DistAPIutil.updateUserDistance(userPref)
     .then(distance => dispatch(receiveDistance(distance)))
 );
 
-export const createUserDistance = distanceObject => dispatch => (
-  DistAPIutil.createUserDistance(distanceObject)
+export const createUserDistance = userPref => dispatch => (
+  DistAPIutil.createUserDistance(userPref)
     .then(distance => dispatch(receiveDistance(distance)))
 );
