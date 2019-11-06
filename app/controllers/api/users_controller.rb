@@ -11,10 +11,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  #possibly filter by distance
- # ADD LOGIC FOR LOOKING FOR It should be the opposite of the user 
-# show all the users except the current one
-# pass the back the user preferences, 
 # check if they are different. 
 # if they are different update them. 
 # use the user id to show the preferences in the state. 
@@ -22,10 +18,18 @@ class Api::UsersController < ApplicationController
 ## show them on the front end for the search page. 
 # fetch the users 
   def index 
-    # @users = User.where.not(id: current_user.id)
-    # organize how it looks on the front end and practice throwing a request to the backend. 
-    debugger
-    userPref = user_pref
+
+    user_val_to_update = []
+    userPref.each do |key|
+      if userPref[key] != current_user[key]
+        user_val_to_update.push({key => userPref[key]})
+      end
+    end
+    if user_val_to_update.length > 0 
+      User.find(userPref.id).update(*user_val_to_update)
+    end
+
+
     @matches = {}
     User.all.each do |user|
       answered_q = QuestionAnswer.where(user_id: [user.id, current_user.id]).select(:question_id).distinct.count

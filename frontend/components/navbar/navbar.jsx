@@ -2,30 +2,33 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { logout } from '../../actions/session_actions'
-
+import {toggleModal} from '../../actions/ui_actions'
 const mapStateToProps = state => ({
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.entities.users[state.session.id],
+  currentModal: state.ui.currentModal
 })
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  toggleModal: modalName => dispatch(toggleModal(modalName))
 })
 
 const handleClick = (e) => {
   e.preventDefault;
-  let target = document.querySelector('#nav-menu').classList;
+  // let target = document.querySelector('#nav-menu').classList;
   let downArrow = document.querySelector('.arrowdown').classList;
   let upArrow = document.querySelector('.arrowup').classList;
-  if (target[0] === 'hide-nav-item') {
-    target.remove('hide-nav-item')
+  if (upArrow[2] === 'hide-nav-item') {
+    // target.remove('hide-nav-item')
     upArrow.remove('hide-nav-item')
     downArrow.add('hide-nav-item')
- 
+
 
   } else {
-    target.add('hide-nav-item')
+    // target.add('hide-nav-item')
     upArrow.add('hide-nav-item')
     downArrow.remove('hide-nav-item')
+   
   }
 }
 
@@ -54,7 +57,7 @@ const handleClick = (e) => {
       </Link>
     </div>
     <div className='right-nav'>
-      <div className='profile-handler'>
+       <div className='profile-handler' onClick={() => props.toggleModal('nav-menu')}>
         <div className="nav-profile link-container" onClick={handleClick}>
           <img className='nav-profile-img' src={props.currentUser.photoUrl} alt="" />
           {props.currentUser.name}
@@ -64,10 +67,13 @@ const handleClick = (e) => {
 
           </div>
         </div>
-        <div id='nav-menu' className='hide-nav-item'>
-          <Link to={`/users/${props.currentUser.id}`} className='nav-menu-item'>Profile</Link>
-           <div onClick={() => (props.logout().then(localStorage.removeItem('user')))} className='nav-menu-item nav-sign-out'>Sign Out</div>
-        </div>
+        {props.currentModal === 'nav-menu' ? (
+           <div id='nav-menu' className=''>
+             <Link to={`/users/${props.currentUser.id}`} className='nav-menu-item'>Profile</Link>
+             <div onClick={() => (props.logout().then(localStorage.removeItem('user')))} className='nav-menu-item nav-sign-out'>Sign Out</div>
+           </div>
+         ) : (<div className='hide-nav-item'></div>)}
+        
       </div>
 
       <a href="https://github.com/carlosdelaomartinez" className="link-container nav-git pro-link">
