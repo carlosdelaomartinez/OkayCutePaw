@@ -2,11 +2,11 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 266px;
   background-color: #104da1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-bottom: 60px;
   .search-info {
     display: flex;
@@ -50,8 +50,11 @@
         background: #f3f5f9;
       }
       .GENDER_PREFS {
+        padding: 10px;
         width: 444px;
-        height: 100px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
         .title {
           font-weight: 500;
           display: block;
@@ -60,19 +63,43 @@
           line-height: 17px;
           color: #2a2f35;
         }
-        .label{
-          color: inherit;
-          .input {
-            color: gray;
-          }
-          .input:checked{
-            color: black;
-          }
-
+        .choices {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          label {
+            color: #949aa6;
+            font-size: 15px;
+            font-weight: none;
         }
+        }
+        
       }
     }
+    
   }
+  .resultsContainer{
+    right: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f3f5f9;
+    .search-results{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 760px;
+      background-color: #f3f5f9;
+    }
+    .user-card-container {
+      margin: 5px;
+    }
+  }
+  
+  // .search-results:nth-child(3n) {
+  //   flex-basis: 100%;
+  // }
 }
 
 .search-info {

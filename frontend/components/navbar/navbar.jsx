@@ -39,28 +39,30 @@ const handleClick = (e) => {
       <Link className='nav-logo-container' to={`/home`}>
         <img className="nav-logo" src={window.mainlogoURL} alt="" />
       </Link>
-      <Link className="doubletake-container link-container" to={'#'}>
+      {/* <Link className="doubletake-container link-container" to={'#'}>
         <img src={window.doubletakeURL} />
         <span>DoubleTake</span>
-      </Link>
+      </Link> */}
       <Link className="search-logo-container link-container" to={'/search'}>
         <img src={window.searchpetURL} />
         <span>Browse</span>
       </Link>
-      <Link className="likes-logo-container link-container" to={'#'}>
+      {/* <Link className="likes-logo-container link-container" to={'#'}>
         <img src={window.petpawURL} alt="" />
         <span>Likes</span>
-      </Link>
-      <Link className="messages-logo-container link-container" to={'#'}>
+      </Link> */}
+      {/* <Link className="messages-logo-container link-container" to={'#'}>
         <img src={window.chatURL} alt="" />
         <span>messages</span>
-      </Link>
+      </Link> */}
     </div>
     <div className='right-nav'>
        <div className='profile-handler' onClick={() => props.toggleModal('nav-menu')}>
         <div className="nav-profile link-container" onClick={handleClick}>
           <img className='nav-profile-img' src={props.currentUser.photoUrl} alt="" />
-          {props.currentUser.name}
+           <div className="nav-username">
+            {props.currentUser.name}
+           </div>
           <div className="arrow-icons">
             <img className='menu-arrow arrowup hide-nav-item' src={window.arrupURL} alt="" />
             <img className='menu-arrow arrowdown' src={window.arrdownURL} alt="" />

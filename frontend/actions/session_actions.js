@@ -4,6 +4,7 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_ERRORS'
 export const RESET_ERRORS = 'RESET_ERRORS';
+export const CLEAR_USERS = 'CLEAR_USERS';
 import * as APIUtil from '../util/session_api_util';
 
 
@@ -34,6 +35,11 @@ export const receiveErrors = (errors) => ({
 export const resetErrors = (reset = []) => ({
   type: RESET_ERRORS,
   reset
+});
+
+export const clearUsers = currentUser => ({
+  type: CLEAR_USERS,
+  currentUser
 });
 
 export const resetSessionErrors = () => dispatch => (
@@ -69,3 +75,6 @@ export const fetchUser = id => dispatch => (
   errors => dispatch(receiveErrors(errors.responseJSON)))
 )
 
+export const clearOtherUsers = currentUser => dispatch => (
+  dispatch(clearOtherUsers(currentUser))
+)

@@ -13,45 +13,49 @@ class SearchModal extends React.Component {
     const {
       id,
       distance,
-      lookingFor,
+      looking_for,
       location,
-      lookingAgeLower,
-      lookingAgeHigher, 
-      gender
-    } = this.props.currentUser
+      looking_age_lower,
+      looking_age_higher, 
+      other_gender_prefs
+    } = this.props.state
     this.state = {
       id: id,
       distance: distance,
-      looking_for: lookingFor,
+      looking_for: looking_for,
       location: location,
-      looking_age_lower: lookingAgeLower,
-      looking_age_higher: lookingAgeHigher,
-      other_gender_prefs: gender.toUpperCase()
+      looking_age_lower: looking_age_lower,
+      looking_age_higher: looking_age_higher,
+      other_gender_prefs: other_gender_prefs
     }
     this.initialState = {
       id: id,
       distance: distance,
-      looking_for: lookingFor,
+      looking_for: looking_for,
       location: location,
-      looking_age_lower: lookingAgeLower,
-      looking_age_higher: lookingAgeHigher,
-      other_gender_prefs: gender.toUpperCase()
+      looking_age_lower: looking_age_lower,
+      looking_age_higher: looking_age_higher,
+      other_gender_prefs: other_gender_prefs
     };
     this.updateLocal = this.updateLocal.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.submit = false;
   }
-  componentDidMount(){
-
+  componentDidMount(){                  
+    window.addEventListener('click', this.handleClick)
   }
-
+  handleClick(e){
+    // this.props.toggleModal(this.props.modalType);
+  }
   componentWillUnmount(){
+    window.removeEventListener('click', this.handleClick)
     for(let key in this.state){
       if (this.state[key] !== this.initialState[key]){
         this.submit = true;
       }
     }
     if(this.submit === true) {
-      console.log('FETCHING MORE THINGS')
+      this.props.fetchUsers(this.state);
     }
   }
 
@@ -68,7 +72,7 @@ class SearchModal extends React.Component {
         <div className="title">
             Show me
         </div>
-
+        <div className="choices">
           <label htmlFor="MALE">
             MALE
             <input
@@ -99,7 +103,7 @@ class SearchModal extends React.Component {
               onChange={this.updateLocal('looking_for')}
             />
           </label>
-
+          </div>
         </div>);
         break;
       case OTHER_USER_GENDER_PREFS:
@@ -107,7 +111,7 @@ class SearchModal extends React.Component {
           <div className="title">
             Interested in
         </div>
-
+          <div className="choices">
           <label htmlFor="MALE">
             MALE
             <input
@@ -138,7 +142,7 @@ class SearchModal extends React.Component {
               onChange={this.updateLocal('other_gender_prefs')}
             />
           </label>
-
+          </div>
         </div>);
         break;
       case AGE_RANGE_PREFS:

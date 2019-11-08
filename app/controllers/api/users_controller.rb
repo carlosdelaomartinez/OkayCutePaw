@@ -18,25 +18,53 @@ class Api::UsersController < ApplicationController
 ## show them on the front end for the search page. 
 # fetch the users 
   def index 
-
     user_val_to_update = []
-    userPref.each do |key|
-      if userPref[key] != current_user[key]
-        user_val_to_update.push({key => userPref[key]})
-      end
-    end
-    if user_val_to_update.length > 0 
-      User.find(userPref.id).update(*user_val_to_update)
-    end
-
+    # user_pref.each do |key|
+    #   debugger
+    #   if user_pref[key[0].to_sym] != current_user[key[0].to_sym]
+    #     user_val_to_update.push({[key[0].to_sym] => user_pref[key[0].to_sym]})
+    #   end
+    # end
+    # if user_val_to_update.length > 0 
+    
+      user = User.find(user_pref[:id].to_i)
+      user.update(user_pref)
+    # end
+    
 
     @matches = {}
-    User.all.each do |user|
+    # 
+    if(user_pref[:looking_for] == "ALL" && other_user_pref[:other_gender_prefs] === "ALL")
+      @users = User.where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .or(User.where(id: current_user.id))
+  
+    elsif (user_pref[:looking_for] == "ALL")
+      @users = User.where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .where(looking_for: other_user_pref[:other_gender_prefs])
+      .or(User.where(id: current_user.id))
+    elsif other_user_pref[:other_gender_prefs] == "ALL"
+      @users = User.where(gender: user_pref[:looking_for])
+      .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .or(User.where(id: current_user.id))
+    else
+      @users = User.where(gender: user_pref[:looking_for])
+      .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .where(looking_for: other_user_pref[:other_gender_prefs])
+      .or(User.where(id: current_user.id))
+    end
+    
+  
+    @users.each do |user|
       answered_q = QuestionAnswer.where(user_id: [user.id, current_user.id]).select(:question_id).distinct.count
       similar_answers = QuestionAnswer.where(user_id: [user.id, current_user.id]).where(answer: true).select(:question_id).distinct.count.to_f
       # debugger
-      @matches[user.id] = (similar_answers/answered_q).round(2) * 100
+      if similar_answers == 0 
+        @matches[user.id] = 0;
+      else 
+        @matches[user.id] = (similar_answers/answered_q).round(2) * 100
+      end
     end
+
     # User.all.where.not(id: current_user.id).each do |user|
     #     # debugger
     #     url = URI.parse("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" \
@@ -48,7 +76,6 @@ class Api::UsersController < ApplicationController
     # end
         
     # debugger
-    @users = User.all
     
     render :index
   end
@@ -65,5 +92,8 @@ class Api::UsersController < ApplicationController
 
   def user_pref 
     params.require(:userPref).permit(:id, :distance, :location, :looking_for, :looking_age_lower, :looking_age_higher)
+  end
+  def other_user_pref
+    params.require(:userPref).permit(:other_gender_prefs)
   end
 end
