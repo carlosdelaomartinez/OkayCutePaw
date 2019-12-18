@@ -146,10 +146,26 @@ class SearchModal extends React.Component {
         </div>);
         break;
       case AGE_RANGE_PREFS:
-        modalToReturn = (<div> Age Range Prefs</div>);
+        modalToReturn = (<div> Age Preferences
+        </div>);
         break;
       case DISTANCE_PREFS:
-        modalToReturn = (<div>Distance Prefs</div>);
+        modalToReturn = (<div>Distance(in miles)
+          <div>
+            <div className="filter-slider-bar"></div>
+            <span className="filter-meter"></span>
+            <button className="filter-slider-button">
+            </button>
+       
+            <div className="filter-slider-tick"></div>
+            <div className="filter-slider-tick"></div>
+            <div className="filter-slider-tick"></div>
+            <div className="filter-slider-tick"></div>
+            <div className="filter-slider-tick"></div>
+            <div className="filter-slider-tick"></div>
+          </div>
+        </div>);
+   
         break;
       case LOCATION_PREFS:
         modalToReturn = (<div> Location Prefs</div>);

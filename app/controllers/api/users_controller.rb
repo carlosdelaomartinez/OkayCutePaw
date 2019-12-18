@@ -35,16 +35,20 @@ class Api::UsersController < ApplicationController
     @matches = {}
     # 
     if(user_pref[:looking_for] == "ALL" && other_user_pref[:other_gender_prefs] === "ALL")
-      @users = User.where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      @users = User.where(gender: ["MALE", "FEMALE"])
+      .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .where(looking_for: ["MALE", "FEMALE"])
       .or(User.where(id: current_user.id))
   
     elsif (user_pref[:looking_for] == "ALL")
-      @users = User.where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      @users = User.where(gender: ["MALE", "FEMALE"])
+      .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
       .where(looking_for: other_user_pref[:other_gender_prefs])
       .or(User.where(id: current_user.id))
     elsif other_user_pref[:other_gender_prefs] == "ALL"
       @users = User.where(gender: user_pref[:looking_for])
       .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
+      .where(looking_for: ["MALE", "FEMALE"])
       .or(User.where(id: current_user.id))
     else
       @users = User.where(gender: user_pref[:looking_for])
@@ -65,15 +69,19 @@ class Api::UsersController < ApplicationController
       end
     end
 
-    # User.all.where.not(id: current_user.id).each do |user|
-    #     # debugger
-    #     url = URI.parse("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" \
-    #       "#{current_user.location}&destinations=#{user.location}&key=#{Rails.application.credentials.google[:api_key]}")
-    #     res = open(url).read
-    #     result = JSON.parse(res)
-    #     distance = result["rows"][0]["elements"][0]["distance"]["text"].split(' ')[0].to_i
-    #     user_distance = UserDistance.create!(user_id: current_user.id, distant_user_id: user.id, distance: distance)
-    # end
+    if UserDistance.where(user_id: current_user.id).count != User.all.count - 1;
+            UserDistance.where(user_id: current_user.id).destroy_all
+
+    User.all.where.not(id: current_user.id).each do |user|
+        # debugger
+        url = URI.parse("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" \
+          "#{current_user.location}&destinations=#{user.location}&key=#{Rails.application.credentials.google[:api_key]}")
+        res = open(url).read
+        result = JSON.parse(res)
+        distance = result["rows"][0]["elements"][0]["distance"]["text"].split(' ')[0].to_i
+        user_distance = UserDistance.create!(user_id: current_user.id, distant_user_id: user.id, distance: distance)
+    end
+    end
         
     # debugger
     

@@ -76,5 +76,5 @@ export const fetchUser = id => dispatch => (
 )
 
 export const clearOtherUsers = currentUser => dispatch => (
-  dispatch(clearOtherUsers(currentUser))
+  dispatch(clearUsers(currentUser))
 )

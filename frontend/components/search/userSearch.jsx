@@ -3,7 +3,7 @@ import {Connect} from 'react-redux';
 import Navbar from '../navbar/navbar';
 import { connect } from 'react-redux';
 import {fetchUserDistances} from '../../actions/distance_actions';
-import {fetchUser, fetchUsers} from '../../actions/session_actions';
+import {fetchUser, fetchUsers, clearOtherUsers} from '../../actions/session_actions';
 import {toggleModal} from '../../actions/ui_actions';
 import {
   GENDER_PREFS,
@@ -26,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
 fetchUserDistances: userPref => dispatch(fetchUserDistances(userPref)),
 fetchUser: id => dispatch(fetchUser(id)),
 fetchUsers: userPref => dispatch(fetchUsers(userPref)),
-toggleModal: modalname => dispatch(toggleModal(modalname))
+toggleModal: modalname => dispatch(toggleModal(modalname)),
+clearOtherUsers: currentUser => dispatch(clearOtherUsers(currentUser))
 });
 
 
@@ -71,6 +72,7 @@ class UserSearch extends React.Component {
     this.getUsers(userPrefs);
   }
   getUsersAndUpdate(userPrefs){
+    this.props.clearOtherUsers(this.props.currentUser);
     this.users = [];
       this.setState({userPrefs: userPrefs, userShowCards: []},() => {
         this.getUsers(userPrefs)
