@@ -147,7 +147,12 @@ class SearchModal extends React.Component {
         break;
       case AGE_RANGE_PREFS:
         modalToReturn = (<div> Age Preferences
+        <input type="number" name="" id=""/> 
+        <span>-</span>
+        <input type="number" name="" id=""/>
         </div>);
+        //Add two input fields
+        // padding
         break;
       case DISTANCE_PREFS:
         modalToReturn = (<div>Distance(in miles)
