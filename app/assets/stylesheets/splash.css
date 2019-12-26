@@ -136,6 +136,7 @@ height: 20px;
 .splash-footer {
   display: flex;
   justify-content: center;
+  align-self: flex-end;
 }
 
 .color1 {

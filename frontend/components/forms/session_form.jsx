@@ -10,7 +10,13 @@ class SessionForm extends React.Component {
       password: '',
       name: '', 
       age: '',
-      location: ''
+      location: '', 
+      distance: '', 
+      looking_for: '',
+      looking_age_lower: 1,
+      looking_age_higher: 16,
+      gender: '',
+      photo: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -31,15 +37,31 @@ class SessionForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let user = this.state;
-    this.props.action(user).then(()=>{},() => this.renderErrors());
+    if(this.props.formType === 'login'){
+      let user = this.state;
+      this.props.action(user).then(() => { }, () => this.renderErrors());
+    } else if (this.props.formType === 'Sign up'){
+      const formData = new FormData();
+      for(let key in this.state){
+        formData.append(`user[${key}]`, this.state[key])
+      }
+      this.props.action(formData).then(() => {}, () => this.renderErrors());
+    }
+    
     
   }
 
   update(form){
-    return (e) => (
-      this.setState({[form]: e.target.value})
-    )
+    if(form !== 'photo'){
+      return (e) => (
+        this.setState({ [form]: e.target.value }, () => console.log(this.state))
+      )
+    } else {
+      return (e) => (
+        this.setState({ photo: e.currentTarget.files[0]}, () => console.log(this.state))
+      )
+    }
+    
   }
 
   handleDemoLogin(){
@@ -100,14 +122,70 @@ class SessionForm extends React.Component {
           Name
         </label>
         <input type="text" onChange={this.update('name')} placeholder='Name' value={this.state.name} />
-        <label>Age
+        <div>
+          <label>Age
         </label>
-        <input type="number" onChange={this.update('age')} placeholder='Age' value={this.state.age} />
+          <input type="number" onChange={this.update('age')} placeholder='Age' value={this.state.age} />
+          <label>
+            Gender
+              </label>
+          <select onChange={this.update('gender')}>
+            <option value="MALE" >Male</option>
+            <option value="FEMALE" >Female</option>
+          </select>
+        </div>
+
 
         <label>
-          Location 
+          Location
         </label>
-        <input type="text" onChange={this.update('location')} placeholder='Location' value={this.state.location} />
+        <input type="text" onChange={this.update('location')} placeholder='Location' value={this.state.location} /> 
+        <div className="looking">
+          <div className="looking-row">
+            <label>
+              Looking for
+              </label>
+            <select onChange={this.update('looking_for')}>
+                <option value="MALE" >Male</option>
+                <option value="FEMALE" >Female</option>
+                <option value="ALL" >ALL</option>
+          </select>
+            
+            <label >
+              Within
+            
+            <select onChange={this.update('distance')}>
+              <option value="10" >10</option>
+              <option value="20" >20</option>
+              <option value="50" >50</option>
+              <option value="100" >100</option>
+              <option value="500" >500</option>
+              <option value="1000" >1000</option>
+
+            </select>
+            </label>
+            Miles
+          </div>
+          <div className="looking-row">
+            <label >
+              Ages
+            </label>
+            <input type="number" 
+              className="age-range" 
+              onChange={this.update('looking_age_lower')} 
+              value={this.state.looking_age_lower}
+            />
+            to
+           <input 
+            type="number" 
+            className="age-range" 
+            onChange={this.update('looking_age_higher')} 
+            value={this.state.looking_age_higher}
+          />
+          </div>      
+          <input type="file" onChange={this.update('photo')} />
+    
+        </div>
 
       </div>
     ) : '')

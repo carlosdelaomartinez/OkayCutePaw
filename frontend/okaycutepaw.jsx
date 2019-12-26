@@ -6,6 +6,7 @@ import * as Action from './actions/session_actions'
 import { login, logout, signup } from './util/session_api_util';
 import * as QuestionAction from './actions/question_actions';
 import * as QAnswerAction from './actions/question_answers_actions';
+import {createUserDistance} from './util/distance_api_util'
 
 
 // window.login = login;
@@ -17,6 +18,7 @@ import * as QAnswerAction from './actions/question_answers_actions';
 // window.fetchQuestions = QuestionAction.fetchQuestions;
 // window.fetchQA = QAnswerAction.fetchQuestionAnswer;
 window.fetchQAs = QAnswerAction.fetchQuestionAnswers;
+window.createUserDistance = createUserDistance;
 // window.createQA = QAnswerAction.createQuestionAnswer;
 // window.updateQA = QAnswerAction.updateQuestionAnswer;
 document.addEventListener("DOMContentLoaded", () => {

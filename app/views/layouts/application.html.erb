@@ -36,7 +36,15 @@
         window.currentUser = {
           'id': <%= current_user.id%>,
           'username': "<%= current_user.username %>",
-          'name': "<%= current_user.name %>"
+          'name': "<%= current_user.name %>",
+          'photoUrl': "<%= url_for(current_user.photo)%>",
+          'lookingFor': "<%= current_user.looking_for%>",
+          'distance': "<%= current_user.distance%>",
+          'lookingAgeLower': "<%= current_user.looking_age_lower%>",
+          'lookingAgeHigher': "<%= current_user.looking_age_higher%>",
+          'location': "<%= current_user.location%>",
+          'gender' : "<%= current_user.gender%>"
+
         }
       </script>
     <%end%>

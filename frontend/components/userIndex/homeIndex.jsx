@@ -23,15 +23,38 @@ const mapDispatchToProps = dispatch => ({
 class HomeIndex extends React.Component {
   constructor(props){
     super(props)
+    const {
+      id,
+      distance,
+      lookingFor,
+      location,
+      lookingAgeLower,
+      lookingAgeHigher,
+      gender
+    } = this.props.currentUser
+    this.state = {
+      userPrefs: {
+        id: id,
+        distance: distance,
+        looking_for: lookingFor,
+        location: location,
+        looking_age_lower: lookingAgeLower,
+        looking_age_higher: lookingAgeHigher,
+        other_gender_prefs: gender.toUpperCase()
+      },
+      userShowCards: []
+    }
   }
+
 
   componentDidMount(){
     window.scrollBy(0, -1000000)
 
     const that = this;
     let promises = [];
-    const {currentUser, users, updateUserDistance, createUserDistance, fetchUserDistances} = this.props
-    this.props.fetchUsers()
+    let userPrefs = this.state.userPrefs;
+
+    this.getUsers(userPrefs);
     //   .then(()=>{
     //   if (!localStorage.getItem('user',`loggedIn${currentUser.id}`)){
     //     Object.keys(users).forEach( id => {
@@ -51,6 +74,9 @@ class HomeIndex extends React.Component {
     //TO GO IN HTMLERB
     //   < script src = "https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initialize"
     // async defer ></script >
+  }
+  getUsers(userPrefs) {
+    this.props.fetchUsers(userPrefs)
   }
   render(){
     return(
@@ -74,14 +100,14 @@ class HomeIndex extends React.Component {
             </div>
             </div>
           </div>
-          <UserIndex
+          {/* <UserIndex
               // title={`Within ${this.props.currentUser.distance} miles`} 
               title={'Snapshots'}
               users={this.props.users}
               sort={'snapshots'}
               questionAnswers={this.props.questionAnswers}
               currentUser={this.props.currentUser}
-          />
+          /> */}
           <UserIndex 
             // title={`Within ${this.props.currentUser.distance} miles`} 
             title={'Mix and Match'}

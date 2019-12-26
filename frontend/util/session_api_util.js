@@ -19,20 +19,23 @@ export const logout = () => (
 )
 
 
-export const signup = (user) => {
+export const signup = (formData) => {
 
   return $.ajax({
     method: "POST",
     url: "/api/users/",
-    data: { user }
+    data:  formData ,
+    contentType: false, 
+    processData: false   
   })
 
 }
 
-export const fetchUsers = () => {
+export const fetchUsers = (userPref) => {
   return $.ajax ({
     method: 'GET',
-    url: "/api/users/"
+    url: "/api/users/",
+    data: {userPref}
   });
 };
 

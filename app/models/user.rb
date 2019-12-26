@@ -2,30 +2,35 @@
 #
 # Table name: users
 #
-#  id              :bigint           not null, primary key
-#  username        :string           not null
-#  name            :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  looking_for     :string
-#  distance        :integer
-#  age             :integer          not null
-#  human           :text
-#  gender          :string
-#  about_me        :text
-#  aspirations     :text
-#  talent          :text
-#  traits          :text
-#  needs           :text
-#  hobbies         :text
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  location        :string           not null
+#  id                 :bigint           not null, primary key
+#  username           :string           not null
+#  name               :string           not null
+#  password_digest    :string           not null
+#  session_token      :string           not null
+#  looking_for        :string
+#  distance           :integer
+#  age                :integer          not null
+#  human              :text
+#  gender             :string
+#  about_me           :text
+#  aspirations        :text
+#  talent             :text
+#  traits             :text
+#  needs              :text
+#  hobbies            :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  location           :string           not null
+#  looking_age_lower  :integer          not null
+#  looking_age_higher :integer          not null
 #
 
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, :age, :location, presence: true
   validates :password, length: { minimum: 6, allow_nil: true}
+  validates :looking_age_lower, :numericality => {:greater_than => 0}
+  validates :looking_age_higher, :numericality => {:greater_than => :looking_age_lower}
+  validates :looking_for, inclusion: {in: ["MALE", "FEMALE", "ALL"]}
   validates_uniqueness_of :username
   has_one_attached :photo
 

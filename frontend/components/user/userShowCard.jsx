@@ -10,7 +10,7 @@ class UserShowCard extends React.Component {
     return(
       <Link to={`/users/${user.id}`} className='user-card-container'>
         <div className='user-photo-container'>
-          <img className='user-card-photo' src={user.photoUrl} alt="" />
+          {/* <img className='user-card-photo' src={user.photoUrl} alt="" /> */}
         </div>
         <div className='user-info-container'>
           <div className='user-info'>
@@ -23,6 +23,8 @@ class UserShowCard extends React.Component {
         <div className="match-container">
           <div className={`${user.matchPercent > 89 ? 'green-match' : 'blue-match'} match-percentage`}>
             {`${user.matchPercent.toString().slice(0, 2)}%`}
+            {/* {`${user.matchPercent}%`} */}
+
           </div>
         </div>
         
