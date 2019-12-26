@@ -146,16 +146,29 @@ class SearchModal extends React.Component {
         </div>);
         break;
       case AGE_RANGE_PREFS:
-        modalToReturn = (<div> Age Preferences
-        <input type="number" name="" id=""/> 
+        modalToReturn = (<div className={this.props.modalType}> Age Preferences
+        <input 
+          type="number" 
+          name="" 
+          id="" 
+          value={this.state.looking_age_lower}
+          onChange={this.updateLocal('looking_age_lower')}
+        /> 
         <span>-</span>
-        <input type="number" name="" id=""/>
+        <input 
+          type="number" 
+          name="" 
+          id="" 
+          value={this.state.looking_age_higher}
+          onChange={this.updateLocal('looking_age_higher')}
+        />
         </div>);
         //Add two input fields
         // padding
         break;
       case DISTANCE_PREFS:
-        modalToReturn = (<div>Distance(in miles)
+        modalToReturn = (<div className={this.props.modalType}>
+          Distance(in miles)
           <div>
             <div className="filter-slider-bar"></div>
             <span className="filter-meter"></span>
@@ -173,7 +186,9 @@ class SearchModal extends React.Component {
    
         break;
       case LOCATION_PREFS:
-        modalToReturn = (<div> Location Prefs</div>);
+        modalToReturn = (<div className={this.props.modalType}> 
+          Location Prefs
+          </div>);
         break;
       default:
         modalToReturn = (<div className="errorModal">ERROR</div>)
