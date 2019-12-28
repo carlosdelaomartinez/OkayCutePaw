@@ -146,22 +146,26 @@ class SearchModal extends React.Component {
         </div>);
         break;
       case AGE_RANGE_PREFS:
-        modalToReturn = (<div className={this.props.modalType}> Age Preferences
-        <input 
-          type="number" 
-          name="" 
-          id="" 
-          value={this.state.looking_age_lower}
-          onChange={this.updateLocal('looking_age_lower')}
-        /> 
-        <span>-</span>
-        <input 
-          type="number" 
-          name="" 
-          id="" 
-          value={this.state.looking_age_higher}
-          onChange={this.updateLocal('looking_age_higher')}
-        />
+        modalToReturn = (<div className={this.props.modalType}>
+          <div className="title">Ages</div>
+        <div className="row">
+            <input
+              type="number"
+              name=""
+              id=""
+              value={this.state.looking_age_lower}
+              onChange={this.updateLocal('looking_age_lower')}
+            />
+            <span>-</span>
+            <input
+              type="number"
+              name=""
+              id=""
+              value={this.state.looking_age_higher}
+              onChange={this.updateLocal('looking_age_higher')}
+            />
+        </div>
+        
         </div>);
         //Add two input fields
         // padding

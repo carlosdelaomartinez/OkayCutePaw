@@ -49,20 +49,21 @@
         left: 35px;
         background: #f3f5f9;
       }
+      .title {
+        font-weight: 500;
+          display: block;
+          font-size: 1.17em;
+
+          line-height: 17px;
+          color: #2a2f35;
+      }
       .GENDER_PREFS {
         padding: 10px;
         width: 444px;
         height: 80px;
         display: flex;
         flex-direction: column;
-        .title {
-          font-weight: 500;
-          display: block;
-          font-size: 1.17em;
 
-          line-height: 17px;
-          color: #2a2f35;
-        }
         .choices {
           display: flex;
           flex-direction: row;
