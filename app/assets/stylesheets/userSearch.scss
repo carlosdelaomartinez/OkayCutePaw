@@ -78,10 +78,24 @@
       }
       .AGE_RANGE_PREFS{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
+        .row{
+          padding-top: 10px;
+          display: flex; 
+          flex-direction: row;
+        }
       }
-
+      .DISTANCE_PREFS{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        white-space: nowrap;
+        .filter-slider-tick{
+          background-color: red;
+          width: 10px;
+        }
+      }
     }
     
   }

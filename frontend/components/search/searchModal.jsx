@@ -172,7 +172,8 @@ class SearchModal extends React.Component {
         break;
       case DISTANCE_PREFS:
         modalToReturn = (<div className={this.props.modalType}>
-          Distance(in miles)
+          <div className="title">  Distance (in miles)
+          </div>
           <div>
             <div className="filter-slider-bar"></div>
             <span className="filter-meter"></span>
