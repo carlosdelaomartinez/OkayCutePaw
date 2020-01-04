@@ -91,10 +91,18 @@
         flex-direction: column;
         justify-content: space-between;
         white-space: nowrap;
-        .filter-slider-tick{
-          background-color: red;
-          width: 10px;
+        .filter-slider-container{
+          margin-top: 10px;
+          display: flex;
+          flex-direction: row;
+          .filter-slider-tick{
+            background-color: #FF597E;
+            width: 44.83px;
+            height: 8px;
+            border-right: 2px solid blue;
+          }
         }
+        
       }
     }
     

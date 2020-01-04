@@ -174,7 +174,7 @@ class SearchModal extends React.Component {
         modalToReturn = (<div className={this.props.modalType}>
           <div className="title">  Distance (in miles)
           </div>
-          <div>
+          <div className="filter-slider-container">
             <div className="filter-slider-bar"></div>
             <span className="filter-meter"></span>
             <button className="filter-slider-button">
