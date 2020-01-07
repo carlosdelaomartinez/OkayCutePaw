@@ -52,7 +52,8 @@ class UserSearch extends React.Component {
         location: location,
         looking_age_lower: lookingAgeLower,
         looking_age_higher: lookingAgeHigher,
-        other_gender_prefs: gender.toUpperCase()},
+        other_gender_prefs: gender.toUpperCase()
+      },
       userShowCards: []      
     }
     this.handleModal = this.handleModal.bind(this);

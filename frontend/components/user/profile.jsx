@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Navbar from '../navbar/navbar'
-import {fetchUsers} from '../../actions/session_actions';
+import {fetchUsers, fetchUser} from '../../actions/session_actions';
 import {withRouter} from 'react-router-dom'
 import UserInfoCard from './userInfoCard';
 import UserDetails from './user_details.jsx'
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUser: (id) => dispatch(fetchUser(id))
 });
 
 class Profile extends React.Component {
@@ -39,20 +39,29 @@ class Profile extends React.Component {
   }
   componentDidMount(){
     window.scrollBy(0, -1000000)
-    this.props.fetchUsers()
+    // this.props.fetchUsers()
+    //   .then(() => {
+    //     const { users } = this.props;
+    //     const user = users[parseInt(this.props.match.params.userId)]
+    //     this.setState({user})
+    //     })
+    // const {users} = this.props;
+    // const user = users[parseInt(this.props.match.params.userId)]
+    this.props.fetchUser(this.props.match.params.userId)
       .then(() => {
-        const { users } = this.props;
+        const {users} = this.props;
         const user = users[parseInt(this.props.match.params.userId)]
-        this.setState({user})
-        })
+       this.setState({user})
+      })
+    // this.setState({user})
   }
   componentDidUpdate(prevProps){
     if(prevProps.match.url !== this.props.match.url){
-      this.props.fetchUsers()
+      this.props.fetchUser(this.props.match.params.userId)
         .then(() => {
           const { users } = this.props;
           const user = users[parseInt(this.props.match.params.userId)]
-          this.setState({ user }, () => console.log(this.state))
+          this.setState({ user })
         })
     }
   }
