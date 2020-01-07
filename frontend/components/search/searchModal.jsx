@@ -155,6 +155,7 @@ class SearchModal extends React.Component {
               id=""
               value={this.state.looking_age_lower}
               onChange={this.updateLocal('looking_age_lower')}
+              min="1"
             />
             <span>-</span>
             <input

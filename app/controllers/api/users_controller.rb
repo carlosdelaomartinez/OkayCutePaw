@@ -26,9 +26,11 @@ class Api::UsersController < ApplicationController
     #   end
     # end
     # if user_val_to_update.length > 0 
-    
       user = User.find(user_pref[:id].to_i)
-      user.update(user_pref)
+      prefDup = user_pref.dup
+      prefDup.delete(:other_gender_prefs)
+      # debugger
+      user.update(prefDup)
     # end
     
 
@@ -99,7 +101,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_pref 
-    params.require(:userPref).permit(:id, :distance, :location, :looking_for, :looking_age_lower, :looking_age_higher)
+    params.require(:userPref).permit(:id, :distance, :location, :looking_for, :looking_age_lower, :looking_age_higher, :other_gender_prefs)
   end
   def other_user_pref
     params.require(:userPref).permit(:other_gender_prefs)
