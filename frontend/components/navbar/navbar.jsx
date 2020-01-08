@@ -43,10 +43,10 @@ const handleClick = (e) => {
         <img src={window.doubletakeURL} />
         <span>DoubleTake</span>
       </Link> */}
-      <Link className="search-logo-container link-container" to={'/search'}>
+      {/* <Link className="search-logo-container link-container" to={'/search'}>
         <img src={window.searchpetURL} />
         <span>Browse</span>
-      </Link>
+      </Link> */}
       {/* <Link className="likes-logo-container link-container" to={'#'}>
         <img src={window.petpawURL} alt="" />
         <span>Likes</span>
