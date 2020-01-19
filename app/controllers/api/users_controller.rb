@@ -58,7 +58,6 @@ class Api::UsersController < ApplicationController
       .where(looking_for: ["MALE", "FEMALE"])
       .joins(:distances)
       .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
-      .or(User.where(id: current_user.id))
   
     elsif (user_pref[:looking_for] == "ALL")
       @users = User.where(gender: ["MALE", "FEMALE"])
