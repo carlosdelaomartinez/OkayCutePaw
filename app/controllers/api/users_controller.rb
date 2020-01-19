@@ -47,37 +47,41 @@ class Api::UsersController < ApplicationController
           res = open(url).read
           result = JSON.parse(res)
           distance = result["rows"][0]["elements"][0]["distance"]["text"].split(' ')[0].to_i
-          user_distance = UserDistance.create!(user_id: current_user.id, distant_user_id: user.id, distance: distance)
+          user_distance = UserDistance.create!(user_id: current_user.id, distant_user_id: user.id, miles: distance)
       end
     end
 
-    
+
     if(user_pref[:looking_for] == "ALL" && other_user_pref[:other_gender_prefs] === "ALL")
       @users = User.where(gender: ["MALE", "FEMALE"])
       .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
       .where(looking_for: ["MALE", "FEMALE"])
+      .joins(:distances)
+      .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
       .or(User.where(id: current_user.id))
   
     elsif (user_pref[:looking_for] == "ALL")
       @users = User.where(gender: ["MALE", "FEMALE"])
       .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
       .where(looking_for: other_user_pref[:other_gender_prefs])
-      .or(User.where(id: current_user.id))
+      .joins(:distances)
+      .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
+
     elsif other_user_pref[:other_gender_prefs] == "ALL"
       @users = User.where(gender: user_pref[:looking_for])
       .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
       .where(looking_for: ["MALE", "FEMALE"])
-      .or(User.where(id: current_user.id))
+      .joins(:distances)
+      .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
+
     else
-      @users = User
-      .where(gender: user_pref[:looking_for])
+      @users = User.where(gender: user_pref[:looking_for])
       .where(age: (user_pref[:looking_age_lower].to_i..user_pref[:looking_age_higher].to_i))
       .where(looking_for: other_user_pref[:other_gender_prefs])
-      .or(User.where(id: current_user.id))
+      .joins(:user_distances)
+      .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
     end
-    
-      #   .joins(:distances)
-      # .where(distance: (1..user_pref[:distance].to_i ))
+
 
     @users.each do |user|
       answered_q = QuestionAnswer.where(user_id: [user.id, current_user.id]).select(:question_id).distinct.count
@@ -90,11 +94,10 @@ class Api::UsersController < ApplicationController
       end
     end
 
-    
+    @current_user = User.find(current_user.id)
 
 
         
-    # debugger
     
     render :index
   end

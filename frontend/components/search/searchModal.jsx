@@ -49,6 +49,12 @@ class SearchModal extends React.Component {
   }
   componentDidMount(){                  
     window.addEventListener('click', this.handleClick)
+    if(this.props.modalType === DISTANCE_PREFS){
+      
+      let slider = document.querySelector('.filter-slider-button');
+      let position = this.getXSliderPos(parseInt(this.state.distance));
+      slider.style.left = position;
+    }
   }
   handleClick(e){
     // this.props.toggleModal(this.props.modalType);
@@ -90,19 +96,16 @@ class SearchModal extends React.Component {
     this.settleSlider(e);
   }
   settleSlider(e){
-    let mousePos = e.clientX
     let container = document.querySelector('.filter-slider-container');
     let slider = document.querySelector('.filter-slider-button');
     let sliderLeft = slider.getBoundingClientRect().left - container.getBoundingClientRect().left;
     let slideDistance = container.getBoundingClientRect().width;
     let increments = Math.round(slideDistance / 6);
-    let first = container.getBoundingClientRect().left;
     let distances = [];   
     let values = [5, 10, 25, 50, 100, 250, 500]
     for (let i = 0; i < 7; i++) {
       distances.push( increments * i);
     }
-    console.log(distances)
     for(let i = 0; i< 7; i++){
       let increment1 = distances[i];
       let increment2 = distances[i + 1]
@@ -114,7 +117,7 @@ class SearchModal extends React.Component {
 
         
         slider.style.left = parseInt(newPosition - 5) + 'px';
-        this.setState({ 'distance': values[valIdxToReturn]}, () => console.log(this.state))
+        this.setState({ 'distance': values[valIdxToReturn]})
       }
     }
   }
@@ -140,7 +143,7 @@ class SearchModal extends React.Component {
   }
   updateLocal(form){
     return (e) => (
-      this.setState({ [form]: e.target.value }, () => console.log(this.state))
+      this.setState({ [form]: e.target.value })
     )
   }
   render(){

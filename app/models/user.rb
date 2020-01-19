@@ -47,7 +47,7 @@ class User < ApplicationRecord
   source: :question
 
   has_many :distances,
-  foreign_key: :user_id,
+  foreign_key: :distant_user_id,
   class_name: :UserDistance
   
   def self.find_by_creds(username, password) 
