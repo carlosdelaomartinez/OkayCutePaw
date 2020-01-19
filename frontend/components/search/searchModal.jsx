@@ -50,9 +50,9 @@ class SearchModal extends React.Component {
   componentDidMount(){                  
     window.addEventListener('click', this.handleClick)
     if(this.props.modalType === DISTANCE_PREFS){
-      debugger
+      
       let slider = document.querySelector('.filter-slider-button');
-      let position = this.getXSliderPos();
+      let position = this.getXSliderPos(parseInt(this.state.distance));
       slider.style.left = position;
     }
   }
@@ -143,7 +143,7 @@ class SearchModal extends React.Component {
   }
   updateLocal(form){
     return (e) => (
-      this.setState({ [form]: e.target.value }, () => console.log(this.state))
+      this.setState({ [form]: e.target.value })
     )
   }
   render(){

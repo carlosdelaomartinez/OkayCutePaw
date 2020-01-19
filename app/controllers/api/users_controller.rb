@@ -98,7 +98,6 @@ class Api::UsersController < ApplicationController
 
 
         
-    # debugger
     
     render :index
   end
