@@ -11,8 +11,8 @@
 #
 
 class UserDistance < ApplicationRecord
-  validates :user_id, :distant_user_id, :distance, presence: true
+  validates :user_id, :distant_user_id, :miles, presence: true
   belongs_to :user,
-  foreign_key: :user_id,
+  foreign_key: :distant_user_id,
   class_name: :User
 end
