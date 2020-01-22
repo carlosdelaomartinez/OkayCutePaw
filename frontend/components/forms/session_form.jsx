@@ -54,11 +54,11 @@ class SessionForm extends React.Component {
   update(form){
     if(form !== 'photo'){
       return (e) => (
-        this.setState({ [form]: e.target.value }, () => console.log(this.state))
+        this.setState({ [form]: e.target.value })
       )
     } else {
       return (e) => (
-        this.setState({ photo: e.currentTarget.files[0]}, () => console.log(this.state))
+        this.setState({ photo: e.currentTarget.files[0]})
       )
     }
     

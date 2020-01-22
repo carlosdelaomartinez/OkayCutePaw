@@ -27,7 +27,7 @@ fetchUserDistances: userPref => dispatch(fetchUserDistances(userPref)),
 fetchUser: id => dispatch(fetchUser(id)),
 fetchUsers: userPref => dispatch(fetchUsers(userPref)),
 toggleModal: modalname => dispatch(toggleModal(modalname)),
-clearOtherUsers: currentUser => dispatch(clearOtherUsers(currentUser))
+clearOtherUsers: id => dispatch(clearOtherUsers(id))
 });
 
 
@@ -68,12 +68,11 @@ class UserSearch extends React.Component {
     //fetch the users using the default search settings of the logged in user. 
     // fetching with the baked in user preferences returns all other users. 
     // updating the fetch info fetches all users including the user because the user needs to be updated
-    console.log(this.state)
     let userPrefs = this.state.userPrefs;
     this.getUsers(userPrefs);
   }
   getUsersAndUpdate(userPrefs){
-    this.props.clearOtherUsers(this.props.currentUser);
+    this.props.clearOtherUsers(this.props.currentUser.id);
     this.users = [];
       this.setState({userPrefs: userPrefs, userShowCards: []},() => {
         this.getUsers(userPrefs)
@@ -110,7 +109,7 @@ class UserSearch extends React.Component {
   
   update(form){
     return (e) => (
-      this.setState({userPrefs: { [form]: e.target.value }}, () => console.log(this.state))
+      this.setState({userPrefs: { [form]: e.target.value }})
     )
   }
   render(){

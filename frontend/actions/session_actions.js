@@ -37,9 +37,9 @@ export const resetErrors = (reset = []) => ({
   reset
 });
 
-export const clearUsers = currentUser => ({
+export const clearUsers = currentUserID => ({
   type: CLEAR_USERS,
-  currentUser
+  currentUserID
 });
 
 export const resetSessionErrors = () => dispatch => (
@@ -75,6 +75,6 @@ export const fetchUser = id => dispatch => (
   errors => dispatch(receiveErrors(errors.responseJSON)))
 )
 
-export const clearOtherUsers = currentUser => dispatch => (
-  dispatch(clearUsers(currentUser))
+export const clearOtherUsers = currentUserID => dispatch => (
+  dispatch(clearUsers(currentUserID))
 )

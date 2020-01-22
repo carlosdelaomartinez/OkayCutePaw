@@ -1,17 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Navbar from '../navbar/navbar'
-import {fetchUsers, fetchUser} from '../../actions/session_actions';
+import {fetchUsers, fetchUser, clearOtherUsers} from '../../actions/session_actions';
 import {withRouter} from 'react-router-dom'
 import UserInfoCard from './userInfoCard';
 import UserDetails from './user_details.jsx'
 
 const mapStateToProps = state => ({
-  users: state.entities.users
+  users: state.entities.users,
+  currentUserId: state.session.id
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchUser: (id) => dispatch(fetchUser(id))
+  fetchUser: (id) => dispatch(fetchUser(id)),
+  resetUsers: (currentUserId) => dispatch(clearOtherUsers(currentUserId))
 });
 
 class Profile extends React.Component {
@@ -64,6 +66,9 @@ class Profile extends React.Component {
           this.setState({ user })
         })
     }
+  }
+  componentWillUnmount(){
+    this.props.resetUsers(this.props.currentUserId);
   }
   generateProfileCardInfo(){
     let cards = [];

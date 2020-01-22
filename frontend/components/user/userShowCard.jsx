@@ -22,7 +22,7 @@ class UserShowCard extends React.Component {
         </div>
         <div className="match-container">
           <div className={`${user.matchPercent > 89 ? 'green-match' : 'blue-match'} match-percentage`}>
-            {`${user.matchPercent.toString().slice(0, 2)}%`}
+            {user.matchPercent === undefined ? '' : `${user.matchPercent.toString().slice(0, 2)}%`}
             {/* {`${user.matchPercent}%`} */}
 
           </div>

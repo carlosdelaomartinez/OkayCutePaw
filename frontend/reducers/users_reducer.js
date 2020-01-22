@@ -16,7 +16,7 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_USERS:
       return Object.assign({}, state, action.users);
     case CLEAR_USERS: 
-      return Object.assign({}, {[action.currentUser.id]: action.currentUser})
+      return Object.assign({}, {[action.currentUserID]: state[action.currentUserID]})
     default:
       return state;
   }

@@ -71,9 +71,7 @@ class HomeIndex extends React.Component {
     //   origins: [94806],
     //   desinations: [95616]
     // }, (response, status) => console.log(response, status))
-    //TO GO IN HTMLERB
-    //   < script src = "https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initialize"
-    // async defer ></script >
+
   }
   getUsers(userPrefs) {
     this.props.fetchUsers(userPrefs)
