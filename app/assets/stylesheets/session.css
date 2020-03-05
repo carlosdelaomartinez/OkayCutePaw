@@ -1,13 +1,11 @@
 
+  
   .auth-container {
     display: flex;
     flex-direction: column;
     background-color: #b9efef;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
+    width: 100%;
+    min-height: 100vh;
   }
   .session-logo{
     position: relative;
@@ -30,7 +28,7 @@
 
   .session-container{
     width: 456px;
-    height: 521px;
+    height: 100%;
   }
   .session-body-container{
     display: flex;
@@ -192,10 +190,3 @@
   .error-slide {
     height: 95px;
   }
-  /* .hidden {
-    display: none;
-  } */
-
-  /* * {
-  border: 1px solid black !important;
-  } */
