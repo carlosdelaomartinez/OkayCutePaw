@@ -5,6 +5,7 @@ import {fetchUsers, fetchUser, clearOtherUsers} from '../../actions/session_acti
 import {withRouter} from 'react-router-dom'
 import UserInfoCard from './userInfoCard';
 import UserDetails from './user_details.jsx'
+import {toggleModal} from '../../actions/ui_actions';
 
 const mapStateToProps = state => ({
   users: state.entities.users,
