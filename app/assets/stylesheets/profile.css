@@ -46,7 +46,7 @@
 }
 .profile-details {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .profile-name {
   font-size: 35px;

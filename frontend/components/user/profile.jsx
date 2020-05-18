@@ -126,10 +126,7 @@ class Profile extends React.Component {
                 <div className='profile-details'>
                   
                   <div className='age-container info deets'>
-                      {this.state.user.age}
-                  </div>
-                  <div className='space info deets'>
-                    .
+                      Age: {this.state.user.age}
                   </div>
                   <div className='profile-location container deets'>
                     {this.state.user.location}
