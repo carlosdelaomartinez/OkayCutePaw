@@ -5,6 +5,7 @@ import {fetchUsers, fetchUser, clearOtherUsers} from '../../actions/session_acti
 import {withRouter} from 'react-router-dom'
 import UserInfoCard from './userInfoCard';
 import UserDetails from './user_details.jsx'
+import {toggleModal} from '../../actions/ui_actions';
 
 const mapStateToProps = state => ({
   users: state.entities.users,
@@ -125,10 +126,7 @@ class Profile extends React.Component {
                 <div className='profile-details'>
                   
                   <div className='age-container info deets'>
-                      {this.state.user.age}
-                  </div>
-                  <div className='space info deets'>
-                    .
+                      Age: {this.state.user.age}
                   </div>
                   <div className='profile-location container deets'>
                     {this.state.user.location}
