@@ -1,11 +1,21 @@
 # README
 
 ## OkayCutePaw
+
 ### Find a friend for your bestfriend. Use OkayCutePaw to match your dog with other dogs!
-# [LIVE DEMO](https://okaycutepaw.herokuapp.com/#/)
+
+Tech Stack:
+* React / Redux
+* Ruby on Rails
+* Amazon Web Services (AWS)
+* PostgreSQL
+
+## [LIVE DEMO](https://okaycutepaw.herokuapp.com/#/)
+
 ![splash](app/assets/gifs/2020-07-14%2010.31.36.gif)
 
-# Users can take questions 
+## Users can take questions 
+
 ![questions](app/assets/gifs/2020-07-14%2009.33.00.gif)
 
 ```ruby
@@ -30,8 +40,7 @@
   end
 ```
 
-
-# A user percentage is generated between users, using their answers to their questions
+## A user percentage is generated between users, using their answers to their questions
 
 ```ruby
   @users.each do |user|
@@ -46,7 +55,7 @@
     end
 ```
 
-# User Distances are mapped to other users using the Google Distance Matrix API
+## User Distances are mapped to other users using the Google Distance Matrix API
 
 ![User Distances](app/assets/gifs/2020-07-14%2010.05.13.gif)
 
@@ -64,7 +73,7 @@
     end
 ```
 
-# Users can search for other users based on their preferences
+## Users can search for other users based on their preferences
 
 ![User Preferences](app/assets/gifs/2020-07-14%2010.17.56.gif)
 
@@ -97,4 +106,41 @@
       .joins(:distances)
       .where('user_distances.user_id = ? AND user_distances.miles BETWEEN ? AND ?', current_user.id, 0, user_pref[:distance])
     end
+```
+
+## User show cards direct to user profile page for more information
+
+![user profile](app/assets/gifs/2020-07-14%2010.41.09.gif)
+
+```ruby
+class UserShowCard extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  render(){
+    const {user} = this.props
+    return(
+      <Link to={`/users/${user.id}`} className='user-card-container'>
+        <div className='user-photo-container'>
+          <img className='user-card-photo' src={user.photoUrl} alt="" />
+        </div>
+        <div className='user-info-container'>
+          <div className='user-info'>
+            {`${user.name}, ${user.age}`}
+          </div>
+          <div className='user-location-text'>
+            {user.location}
+            </div>
+        </div>
+        <div className="match-container">
+          <div className={`${user.matchPercent > 89 ? 'green-match' : 'blue-match'} match-percentage`}>
+            {user.matchPercent === undefined ? '' : `${user.matchPercent.toString().slice(0, 2)}%`}
+            {/* {`${user.matchPercent}%`} */}
+          </div>
+        </div>
+      </Link>
+    )
+  }
+}
 ```
